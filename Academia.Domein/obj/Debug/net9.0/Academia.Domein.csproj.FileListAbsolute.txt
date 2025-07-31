@@ -1,0 +1,11 @@
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.deps.json
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.dll
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.pdb
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.AssemblyInfoInputs.cache
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.AssemblyInfo.cs
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.csproj.CoreCompileInputs.cache
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.dll
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\refint\Academia.Domein.dll
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.pdb
+C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\ref\Academia.Domein.dll

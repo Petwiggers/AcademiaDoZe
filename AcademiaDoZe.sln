@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academia.Domein", "Academia.Domein\Academia.Domein.csproj", "{0C88266E-76E3-43C9-8D2D-225C88167C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Domain.Tests", "AcademiaDoZe.Domain.Tests\AcademiaDoZe.Domain.Tests.csproj", "{11F91409-6148-48F0-A806-05D1F2F1CD2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C88266E-76E3-43C9-8D2D-225C88167C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C88266E-76E3-43C9-8D2D-225C88167C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C88266E-76E3-43C9-8D2D-225C88167C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C88266E-76E3-43C9-8D2D-225C88167C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F91409-6148-48F0-A806-05D1F2F1CD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F91409-6148-48F0-A806-05D1F2F1CD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F91409-6148-48F0-A806-05D1F2F1CD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F91409-6148-48F0-A806-05D1F2F1CD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFD6FA0A-9AE8-4BE9-A601-DBB45A3DE4BD}
+	EndGlobalSection
+EndGlobal

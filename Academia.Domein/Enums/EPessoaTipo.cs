@@ -6,6 +6,7 @@ namespace AcademiaDoZe.Domain.Enums
     {
         [Display(Name = "Colaborador")]
         Colaborador = 0,
+
         [Display(Name = "Aluno")]
         Aluno = 1
     }

@@ -8,23 +8,23 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\peter\\.nuget\\packages\\": {},
+    "C:\\Users\\01221379909\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\peter\\OneDrive\\Documentos\\Pet\\Sistemas De Informação\\Desenvolvimento de Sistemas\\AcademiaDoZe\\Academia.Domein\\Academia.Domein.csproj",
+      "projectUniqueName": "C:\\Users\\01221379909\\Desktop\\Pet\\Sistemas de Informação\\Desenvolvimento de sistemas\\AcademiaDoZe\\Academia.Domein\\Academia.Domein.csproj",
       "projectName": "Academia.Domein",
-      "projectPath": "C:\\Users\\peter\\OneDrive\\Documentos\\Pet\\Sistemas De Informação\\Desenvolvimento de Sistemas\\AcademiaDoZe\\Academia.Domein\\Academia.Domein.csproj",
-      "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\peter\\OneDrive\\Documentos\\Pet\\Sistemas De Informação\\Desenvolvimento de Sistemas\\AcademiaDoZe\\Academia.Domein\\obj\\",
+      "projectPath": "C:\\Users\\01221379909\\Desktop\\Pet\\Sistemas de Informação\\Desenvolvimento de sistemas\\AcademiaDoZe\\Academia.Domein\\Academia.Domein.csproj",
+      "packagesPath": "C:\\Users\\01221379909\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\01221379909\\Desktop\\Pet\\Sistemas de Informação\\Desenvolvimento de sistemas\\AcademiaDoZe\\Academia.Domein\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\01221379909\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

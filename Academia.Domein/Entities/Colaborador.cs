@@ -45,23 +45,44 @@ public class Colaborador : Pessoa
         EColaboradorTipo tipo,
         EColaboradorVinculo vinculo)
     {
-        if (string.IsNullOrWhiteSpace(nomeCompleto)) throw new DomainException("NOME_OBRIGATORIO");
+        // Validações e normalizações
+        if (string.IsNullOrEmpty(nomeCompleto)) throw new DomainException("NOME_OBRIGATORIO");
         nomeCompleto = TextoNormalizadoService.LimparEspacos(nomeCompleto);
-        nomeCompleto = TextoNormalizadoService.ParaMaiusculo(nomeCompleto);
-        if (string.IsNullOrWhiteSpace(cpf)) throw new DomainException("CPF_OBRIGATORIO");
+
+        if (string.IsNullOrEmpty(cpf)) throw new DomainException("CPF_OBRIGATORIO");
         cpf = TextoNormalizadoService.LimparEDigitos(cpf);
-        if (dataNascimento ==  default) throw new DomainException("DATA_NASCIMENTO_OBRIGATORIO");
-        if (string.IsNullOrWhiteSpace(telefone)) throw new DomainException("TELEFONE_OBRIGATORIO");
+        if (cpf.Length != 11) throw new DomainException("CPF_DIGITOS");
+
+        if (dataNascimento == default) throw new DomainException("DATA_NASCIMENTO_OBRIGATORIO");
+        if (dataNascimento > DateOnly.FromDateTime(DateTime.Today.AddYears(-12))) throw new DomainException("DATA_NASCIMENTO_MINIMA_INVALIDA");
+
+        if (string.IsNullOrEmpty(telefone)) throw new DomainException("TELEFONE_OBRIGATORIO");
         telefone = TextoNormalizadoService.LimparEDigitos(telefone);
-        if (string.IsNullOrWhiteSpace(email)) throw new DomainException("EMAIL_OBRIGATORIO");
+        if (telefone.Length != 11) throw new DomainException("TELEFONE_DIGITOS");
+
         email = TextoNormalizadoService.LimparEspacos(email);
-        email = TextoNormalizadoService.ParaMaiusculo(email);
-        if (string.IsNullOrWhiteSpace(senha)) throw new DomainException("SENHA_OBRIGATORIO");
-        senha = TextoNormalizadoService.LimparTodosEspacos(senha);
-        senha = TextoNormalizadoService.ParaMaiusculo(senha);
+        if (TextoNormalizadoService.ValidarFormatoEmail(email)) throw new DomainException("EMAIL_FORMATO");
+
+        if (string.IsNullOrEmpty(senha)) throw new DomainException("SENHA_OBRIGATORIO");
+        senha = TextoNormalizadoService.LimparEspacos(senha);
+        if (TextoNormalizadoService.ValidarFormatoSenha(senha)) throw new DomainException("SENHA_FORMATO");
+
+        // if (foto == null) throw new DomainException("FOTO_OBRIGATORIO");
+
         if (endereco == null) throw new DomainException("LOGRADOURO_OBRIGATORIO");
-        if (string.IsNullOrWhiteSpace(numero)) throw new DomainException("NUMERO_OBRIGATORIO");
-        numero = TextoNormalizadoService.LimparTodosEspacos(numero);
+
+        if (string.IsNullOrEmpty(numero)) throw new DomainException("NUMERO_OBRIGATORIO");
+        numero = TextoNormalizadoService.LimparEspacos(numero);
+
+        complemento = TextoNormalizadoService.LimparEspacos(complemento);
+
+        if (dataAdmissao == default) throw new DomainException("DATA_ADMISSAO_OBRIGATORIO");
+        if (dataAdmissao > DateOnly.FromDateTime(DateTime.Today)) throw new DomainException("DATA_ADMISSAO_MAIOR_ATUAL");
+
+        if (!Enum.IsDefined(tipo)) throw new DomainException("TIPO_COLABORADOR_INVALIDO");
+
+        if (!Enum.IsDefined(vinculo)) throw new DomainException("VINCULO_COLABORADOR_INVALIDO");
+        if (tipo == EColaboradorTipo.Administrador && vinculo == EColaboradorVinculo.CLT) throw new DomainException("ADMINISTRADOR_CLT_INVALIDO");
 
         return new Colaborador(nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
     }

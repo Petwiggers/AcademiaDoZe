@@ -13,9 +13,17 @@ public record Arquivo
 
     public static Arquivo Criar(byte[] conteudo, string tipo) 
     {
-        if (conteudo == null) throw new DomainException("CONTEUDO_OBRIGATORIO");
-        if (string.IsNullOrEmpty(tipo)) throw new DomainException("TIPO_ARQUIVO_OBRIGATORIO");
+        if (conteudo == null || conteudo.Length == 0)
+            throw new DomainException("ARQUIVO_VAZIO");
+        if (string.IsNullOrEmpty(tipo))
+            throw new DomainException("ARQUIVO_TIPO_OBRIGATORIO");
+        var tiposPermitidos = new[] { ".jpg", ".jpeg", ".png", ".pdf", ".docx" };
+        if (!tiposPermitidos.Contains(tipo.ToLower()))
+            throw new DomainException("ARQUIVO_TIPO_INVALIDO");
+        const int tamanhoMaximoBytes = 5 * 1024 * 1024; // 5MB
+        if (conteudo.Length > tamanhoMaximoBytes)
+            throw new DomainException("ARQUIVO_TIPO_TAMANHO");
 
-        return new Arquivo(conteudo, tipo);  
+        return new Arquivo(conteudo, tipo);
     }
 }

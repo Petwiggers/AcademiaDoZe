@@ -9,3 +9,15 @@ C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento 
 C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\refint\Academia.Domein.dll
 C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.pdb
 C:\Users\peter\OneDrive\Documentos\Pet\Sistemas De Informação\Desenvolvimento de Sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\ref\Academia.Domein.dll
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.deps.json
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.dll
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\bin\Debug\net9.0\Academia.Domein.pdb
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.AssemblyInfoInputs.cache
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.AssemblyInfo.cs
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.csproj.CoreCompileInputs.cache
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.sourcelink.json
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.dll
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\refint\Academia.Domein.dll
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\Academia.Domein.pdb
+C:\Users\01221379909\Desktop\Pet\Sistemas de Informação\Desenvolvimento de sistemas\AcademiaDoZe\Academia.Domein\obj\Debug\net9.0\ref\Academia.Domein.dll

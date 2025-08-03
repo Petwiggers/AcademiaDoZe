@@ -20,6 +20,28 @@ namespace AcademiaDoZe.Domain.Tests
             Assert.NotNull(aluno);
         }
         [Fact]
+        public void CriarAluno_CepInvalido_DeveLancarExcecao()
+        {
+            // Arrange
+            var nome = "João da Silva"; var cpf = "123456"; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "11999999999";
+            var email = "joao@email.com"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = "Senha@123"; var foto = GetValidArquivo();
+            // Act & Assert
+            var ex = Assert.Throws<DomainException>(() =>
+            Aluno.Criar(
+            nome,
+            cpf,
+            dataNascimento,
+            telefone,
+            email,
+            logradouro,
+            numero,
+            complemento,
+            senha,
+            foto
+            ));
+            Assert.Equal("CPF_DIGITOS", ex.Message);
+        }
+        [Fact]
         public void CriarAluno_ComNomeVazio_DeveLancarExcecao()
         {
             // Arrange
@@ -40,6 +62,32 @@ namespace AcademiaDoZe.Domain.Tests
             foto
             ));
             Assert.Equal("NOME_OBRIGATORIO", ex.Message);
+        }
+
+        [Fact]
+        public void CriarAluno_VerificaNormalizacoes()
+        {
+            // Arrange
+            var cpf = " 1234567  8901  "; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "    119999 99999    ";
+            var email = "   joao@email.com "; var logradouro = GetValidLogradouro(); var numero = " 1 23"; var complemento = "Apto 1  "; var senha = "    Senha @123  "; var foto = GetValidArquivo();
+            // Act & Assert
+            var aluno = Aluno.Criar(
+            "   Peterson Wiggers   ",
+            cpf,
+            dataNascimento,
+            telefone,
+            email,
+            logradouro,
+            numero,
+            complemento,
+            senha,
+            foto
+            );
+            Assert.Equal("PETERSON WIGGERS", aluno.Nome);
+            Assert.Equal("11999999999", aluno.Telefone);
+            Assert.Equal("joao@email.com", aluno.Email);
+            Assert.Equal("123", aluno.Numero);
+            Assert.Equal("Senha@123", aluno.Senha);
         }
     }
 }

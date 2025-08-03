@@ -36,6 +36,7 @@ public class Aluno : Pessoa
 
         if (string.IsNullOrWhiteSpace(cpf)) throw new DomainException("CPF_OBRIGATORIO");
         cpf = TextoNormalizadoService.LimparEDigitos(cpf);
+        if (cpf.Length != 11) throw new DomainException("CPF_DIGITOS");
 
         if (dataNascimento == default) throw new DomainException("DATA_NASCIMENTO_OBRIGATORIO");
         if (dataNascimento > DateOnly.FromDateTime(DateTime.Today.AddYears(-12))) throw new DomainException("DATA_NASCIMENTO_MINIMA_INVALIDA");
@@ -45,9 +46,11 @@ public class Aluno : Pessoa
 
         if (string.IsNullOrWhiteSpace(senha)) throw new DomainException("SENHA_OBRIGATORIO");
         senha = TextoNormalizadoService.LimparTodosEspacos(senha);
-        senha = TextoNormalizadoService.ParaMaiusculo(senha);
 
         if (endereco == null) throw new DomainException("LOGRADOURO_OBRIGATORIO");
+
+        if (TextoNormalizadoService.ValidarFormatoEmail(email)) throw new DomainException("FORMATO_EMAIL");
+        email = TextoNormalizadoService.LimparEspacos(email);
 
         if (string.IsNullOrWhiteSpace(numero)) throw new DomainException("NUMERO_OBRIGATORIO");
         numero = TextoNormalizadoService.LimparTodosEspacos(numero);

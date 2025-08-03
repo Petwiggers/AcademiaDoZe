@@ -50,12 +50,13 @@ public class Matricula : Entity
         if (alunoMatricula ==  null) throw new DomainException("ALUNO_OBRIGATORIO");
         if (string.IsNullOrWhiteSpace(objetivo)) throw new DomainException("OBJETIVO_OBRIGATORIO");
         objetivo = TextoNormalizadoService.LimparEspacos(objetivo);
-        objetivo = TextoNormalizadoService.ParaMaiusculo(objetivo);
         int idade = CalculoService.CalcularIdade(alunoMatricula.DataNascimento);
+        Console.WriteLine($"{idade}");
         if (idade >= 12 & idade <= 16)
         {
             if(laudoMedico == null) throw new DomainException("LAUDO_OBRIGATORIO");
         }
+        observacoes = TextoNormalizadoService.LimparEspacos(observacoes);
 
         return new Matricula(alunoMatricula, plano, dataInicio, dataFim, objetivo, restricoesMedicas, observacoes, laudoMedico);
 

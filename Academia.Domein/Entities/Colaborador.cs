@@ -64,7 +64,7 @@ public class Colaborador : Pessoa
         if (TextoNormalizadoService.ValidarFormatoEmail(email)) throw new DomainException("EMAIL_FORMATO");
 
         if (string.IsNullOrEmpty(senha)) throw new DomainException("SENHA_OBRIGATORIO");
-        senha = TextoNormalizadoService.LimparEspacos(senha);
+        senha = TextoNormalizadoService.LimparTodosEspacos(senha);
         if (TextoNormalizadoService.ValidarFormatoSenha(senha)) throw new DomainException("SENHA_FORMATO");
 
         // if (foto == null) throw new DomainException("FOTO_OBRIGATORIO");

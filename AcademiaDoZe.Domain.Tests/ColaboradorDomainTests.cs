@@ -30,7 +30,20 @@ namespace AcademiaDoZe.Domain.Tests
         }
 
         [Fact]
-        public void CriarAluno_ComNomeVazio_DeveLancarExcecao()
+        public void CriarColaborador_ComEmailInvalido_DeveLancarExcecao()
+        {
+            // Arrange
+            var nome = "João da Silva"; var cpf = "12345678901"; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "11999999999";
+            var email = "joao@emailcom"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = "Senha@1"; var foto = GetValidArquivo();
+            var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
+            // Act
+            var ex = Assert.Throws<DomainException>(() => Colaborador.Criar(nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo));
+
+            Assert.Equal("EMAIL_FORMATO", ex.Message);
+        }
+
+        [Fact]
+        public void CriarColaborador_ComNomeVazio_DeveLancarExcecao()
         {
             // Arrange
             var cpf = "12345678901"; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "11999999999";
@@ -43,6 +56,36 @@ namespace AcademiaDoZe.Domain.Tests
             // Assert
             Assert.Equal("NOME_OBRIGATORIO", ex.Message);
         }
-        
+
+        [Fact]
+        public void CriarColaborador_VerificaNormalizacoes()
+        {
+            // Arrange
+            var cpf = "1234 56  78901 "; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = " 11999 9   99999";
+            var email = "joao@email.com"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = " Se nha@1 2 3 "; var foto = GetValidArquivo();
+            var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
+            // Act & Assert
+            var colaborador = Colaborador.Criar(
+            "   Peterson  Wiggers   ",
+            cpf,
+            dataNascimento,
+            telefone,
+            email,
+            logradouro,
+            numero,
+            complemento,
+            senha,
+            foto,
+            dataAdmissao,
+            tipo,
+            vinculo
+            );
+            Assert.Equal("Peterson Wiggers", colaborador.Nome);
+            Assert.Equal("11999999999", colaborador.Telefone);
+            Assert.Equal("joao@email.com", colaborador.Email);
+            Assert.Equal("123", colaborador.Numero);
+            Assert.Equal("Senha@123", colaborador.Senha);
+        }
+
     }
 }

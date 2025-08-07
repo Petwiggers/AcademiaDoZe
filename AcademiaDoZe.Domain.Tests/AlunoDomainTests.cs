@@ -1,4 +1,5 @@
-﻿using Academia.Domain.Entities;
+﻿//Peterson Wigggers
+using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Exceptions;
 namespace AcademiaDoZe.Domain.Tests
 {

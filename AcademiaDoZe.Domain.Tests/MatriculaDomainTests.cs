@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿//Peterson Wigggers
 using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Exceptions;

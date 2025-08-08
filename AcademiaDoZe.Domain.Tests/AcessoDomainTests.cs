@@ -7,7 +7,7 @@ namespace AcademiaDoZe.Domain.Tests
 {
     public class AcessoDomainTests
     {
-        private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1], ".jpg");
+        private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1]);
         private Logradouro GetValidLogradouro() => Logradouro.Criar("12345678", "Rua A", "Centro", "Cidade", "SP", "Brasil");
 
         private DateTime DateTimeInvalido() => DateTime.Today + new TimeSpan(23,0,0);
@@ -26,7 +26,7 @@ namespace AcademiaDoZe.Domain.Tests
                 CriarAlunoValido(),
                 DateTime.Now);
 
-            Assert.NotNull(acesso   );
+            Assert.NotNull(acesso);
         }
 
         [Fact]

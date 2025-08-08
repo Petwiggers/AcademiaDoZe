@@ -1,5 +1,4 @@
 ﻿//Peterson Wiggers
-using System;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Exceptions;
 namespace Academia.Domain.Entities;

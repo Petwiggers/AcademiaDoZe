@@ -21,7 +21,7 @@ namespace AcademiaDoZe.Domain.Tests
             return Aluno.Criar(nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto);
         }
 
-        private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1], ".jpg");
+        private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1]);
 
         [Fact]
         public void CriarMatricula_ComDadosValidos_DeveCriarObjeto()

@@ -2,9 +2,10 @@
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Infrastructure.Data;
+using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
-namespace AcademiaDoZe.Infrastructure.Repositories
+namespace AcademiaDoZe.Infraestrutura.Repositories
 {
     public class ColaboradorRepository : BaseRepository<Colaborador>, IColaboradorRepository
     {

@@ -1,10 +1,11 @@
 ﻿using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Infrastructure.Data;
+using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
 using System.Runtime.ConstrainedExecution;
-namespace AcademiaDoZe.Infrastructure.Repositories
+namespace AcademiaDoZe.Infraestrutura.Repositories
 {
     public class LogradouroRepository : BaseRepository<Logradouro>, ILogradouroRepository
     {

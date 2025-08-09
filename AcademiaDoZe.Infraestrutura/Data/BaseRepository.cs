@@ -1,6 +1,6 @@
 ﻿using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Infrastructure.Data;
-using AcademiaDoZe.Infrastructure.Exceptions;
+using AcademiaDoZe.Exceptions.Infrastructure;
 using System.Data;
 using System.Data.Common;
 namespace AcademiaDoZe.Infrastructure.Repositories

@@ -1,4 +1,5 @@
 ﻿using Academia.Domain.Entities;
+using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Repositories;
@@ -94,9 +95,38 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             throw new NotImplementedException();
         }
 
-        protected override Task<Acesso> MapAsync(DbDataReader reader)
+        protected override async Task<Acesso> MapAsync(DbDataReader reader)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // Obtém o logradouro de forma assíncrona
+                var pessoaId = Convert.ToInt32(reader["pessoa_id"]);
+                var pessoaTipo = (EPessoaTipo)Convert.ToInt32(reader["tipo"]);
+                Pessoa pessoa = null;
+                if (pessoaTipo == EPessoaTipo.Aluno)
+                {
+                    var repository = new AlunoRepository(_connectionString, _databaseType);
+                    pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Aluno com ID {pessoaId} não encontrado.");
+                }
+                else if (pessoaTipo == EPessoaTipo.Colaborador)
+                {
+                    var repository = new ColaboradorRepository(_connectionString, _databaseType);
+                    pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Colaborador com ID {pessoaId} não encontrado.");
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Tipo de pessoa inválido: {pessoaTipo}");
+                }                
+                // Cria o objeto aluno usando o método de fábrica
+                var acesso = Acesso.Criar(pessoaTipo, pessoa, 
+                    Convert.ToDateTime(reader["data_hora"])
+                );
+                // Define o ID usando reflection
+                var idProperty = typeof(Entity).GetProperty("Id");
+                idProperty?.SetValue(acesso, Convert.ToInt32(reader["id_aluno"]));
+                return acesso;
+            }
+            catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados do aluno: {ex.Message}", ex); }
         }
     }
 }

@@ -148,7 +148,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 throw new InvalidOperationException($"Erro ao trocar senha do colaborador ID {id}: {ex.Message}", ex);
             }
         }
-        protected override async Task<Colaborador> MapAsync(DbDataReader reader)
+        public override async Task<Colaborador> MapAsync(DbDataReader reader)
         {
             try
             {

@@ -105,7 +105,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             }
             catch (DbException ex) { throw new InvalidOperationException($"ERRO_OBTER_LOGRADOURO_POR_CIDADE_{cidade}", ex); }
         }
-        protected override async Task<Logradouro> MapAsync(DbDataReader reader)
+        public override async Task<Logradouro> MapAsync(DbDataReader reader)
         {
             try
             {

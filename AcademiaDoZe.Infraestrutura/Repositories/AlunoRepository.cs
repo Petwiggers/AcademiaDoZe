@@ -139,7 +139,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 throw new InvalidOperationException($"Erro ao trocar senha do aluno ID {id}: {ex.Message}", ex);
             }
         }
-        protected override async Task<Aluno> MapAsync(DbDataReader reader)
+         public override async Task<Aluno> MapAsync(DbDataReader reader)
         {
             try
             {

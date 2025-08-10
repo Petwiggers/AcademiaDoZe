@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AcademiaDoZe.Infraestrutura.Repositories
 {
@@ -96,14 +97,47 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao obter acessos por aluno: {ex.Message}", ex); }
         }
 
-        public Task<IEnumerable<Acesso>> GetAcessosPorColaboradorPeriodo(int? colaboradorId = null, DateOnly? inicio = null, DateOnly? fim = null)
+        public async Task<IEnumerable<Acesso>> GetAcessosPorColaboradorPeriodo(int? colaboradorId = null, DateOnly? inicio = null, DateOnly? fim = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (inicio == null || inicio == default) throw new InvalidOperationException("Data de início não pode ser nula ou padrão.");
+                if (fim == null || fim == default) throw new InvalidOperationException("Data de fim não pode ser nula ou padrão.");
+                if (colaboradorId == null) throw new InvalidOperationException("Colaborador ID está como null");
+                await using var connection = await GetOpenConnectionAsync();
+                string query = $"SELECT * FROM {TableName} WHERE data_hora>=@Data_inicio and data_hora<DATEADD(day, 1, @Data_fim) and id_colaborador=@Id_colaborador;";
+                await using var command = DbProvider.CreateCommand(query, connection);
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", inicio?.ToDateTime(new TimeOnly(0, 0)), DbType.DateTime, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", fim?.ToDateTime(new TimeOnly(0, 0)), DbType.DateTime, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Id_colaborador", colaboradorId, DbType.Int32, _databaseType));
+                await using var reader = await command.ExecuteReaderAsync();
+                var entities = new List<Acesso>();
+                while (await reader.ReadAsync())
+                {
+                    entities.Add(await MapAsync(reader));
+                }
+                return entities;
+            }
+            catch (DbException ex) { throw new InvalidOperationException($"Erro ao obter acessos por aluno: {ex.Message}", ex); }
         }
 
-        public Task<IEnumerable<Aluno>> GetAlunosSemAcessoNosUltimosDias(int dias)
+        public async Task<IEnumerable<Aluno>> GetAlunosSemAcessoNosUltimosDias(int dias)
         {
-            throw new NotImplementedException();
+            if (dias <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero." + nameof(dias));
+            await using var connection = await GetOpenConnectionAsync();
+            string query = $"select * from tb_aluno al"
+            + $"join {TableName} a on pessoa_id = id_aluno"
+            + $"where pessoa_tipo = {(int)EPessoaTipo.Aluno} and CAST(data_hora AS date) >= CAST(DATEADD(DAY, @Dias, GETDATE()) AS date);";
+            await using var commando = DbProvider.CreateCommand(query, connection);
+            commando.Parameters.Add(DbProvider.CreateParameter("@Dias", -dias, DbType.Int32, _databaseType));
+            await using var reader = await commando.ExecuteReaderAsync();
+            var entities = new List<Aluno>();
+            var repositoryAluno = new AlunoRepository(_connectionString, _databaseType);
+            while (await reader.ReadAsync())
+            {
+                entities.Add(await repositoryAluno.MapAsync(reader));
+            }
+            return entities;
         }
 
         public Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
@@ -116,7 +150,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             throw new NotImplementedException();
         }
 
-        protected override async Task<Acesso> MapAsync(DbDataReader reader)
+        public override async Task<Acesso> MapAsync(DbDataReader reader)
         {
             try
             {

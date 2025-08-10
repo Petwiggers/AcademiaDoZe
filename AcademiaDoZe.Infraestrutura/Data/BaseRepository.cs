@@ -61,7 +61,7 @@ namespace AcademiaDoZe.Infrastructure.Repositories
         #region métodos de uso específico, que devem ser implementados nas classes derivadas
         public abstract Task<TEntity> Adicionar(TEntity entity);
         public abstract Task<TEntity> Atualizar(TEntity entity);
-        protected abstract Task<TEntity> MapAsync(DbDataReader reader);
+        public abstract Task<TEntity> MapAsync(DbDataReader reader);
         #endregion
 
         #region métodos de uso geral, não dependem de dados específicos de cada entidade

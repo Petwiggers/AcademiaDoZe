@@ -1,6 +1,7 @@
 ﻿using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Repositories;
+using AcademiaDoZe.Exceptions.Infrastructure;
 using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Repositories;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,9 +72,28 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao atualizar acesso: {ex.Message}", ex); }
         }
-        public Task<IEnumerable<Acesso>> GetAcessosPorAlunoPeriodo(int? alunoId = null, DateOnly? inicio = null, DateOnly? fim = null)
+        public async Task<IEnumerable<Acesso>> GetAcessosPorAlunoPeriodo(int? alunoId = null, DateOnly? inicio = null, DateOnly? fim = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(inicio == null || inicio == default) throw new InvalidOperationException("Data de início não pode ser nula ou padrão.");
+                if(fim == null || fim == default) throw new InvalidOperationException("Data de fim não pode ser nula ou padrão.");
+                if(alunoId == null) throw new InvalidOperationException("Aluno ID está como null");
+                await using var connection = await GetOpenConnectionAsync();
+                string query = $"SELECT * FROM {TableName} WHERE data_hora>=@Data_inicio and data_hora<DATEADD(day, 1, @Data_fim) and id_aluno=@Id_aluno;";
+                await using var command = DbProvider.CreateCommand(query, connection);
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", inicio?.ToDateTime(new TimeOnly(0, 0)), DbType.DateTime, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", fim?.ToDateTime(new TimeOnly(0, 0)), DbType.DateTime, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Id_aluno", alunoId, DbType.Int32, _databaseType));
+                await using var reader = await command.ExecuteReaderAsync();
+                var entities = new List<Acesso>();
+                while (await reader.ReadAsync())
+                {
+                    entities.Add(await MapAsync(reader));
+                }
+                return entities;
+            }
+            catch (DbException ex) { throw new InvalidOperationException($"Erro ao obter acessos por aluno: {ex.Message}", ex); }
         }
 
         public Task<IEnumerable<Acesso>> GetAcessosPorColaboradorPeriodo(int? colaboradorId = null, DateOnly? inicio = null, DateOnly? fim = null)

@@ -1,4 +1,5 @@
-﻿using AcademiaDoZe.Exceptions.Infrastructure;
+﻿//Peterson Wiggers
+using AcademiaDoZe.Exceptions.Infrastructure;
 using Microsoft.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Data;

@@ -1,4 +1,5 @@
-﻿namespace AcademiaDoZe.Exceptions.Infrastructure
+﻿//Peterson Wiggers
+namespace AcademiaDoZe.Exceptions.Infrastructure
 {
     // Classe base para exceções de infraestrutura
     public class InfrastructureException : Exception

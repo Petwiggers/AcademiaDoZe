@@ -7,7 +7,6 @@ using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
 
-
 namespace AcademiaDoZe.Infraestrutura.Repositories
 {
     public class AcessoRepository : BaseRepository<Acesso>, IAcessoRepository
@@ -134,8 +133,22 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             return entities;
         }
 
-        public Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
+        public async Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
         {
+            if (mes <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero" + nameof(mes));
+            await using var connection = await GetOpenConnectionAsync();
+            //Falta filtrar por mês
+            string query = $"SELECT TOP 1 " +
+                            $"CAST(data_acesso AS DATE) AS data, " +
+                            $"COUNT(*) AS total_acessos FROM {TableName}"
+                        + $"WHERE MONTH(data_acesso) = @Mes"
+                        + $"GROUP BY CAST(data_acesso AS DATE)"
+                        + $"ORDER BY total_acessos DESC";
+            await using var commando = DbProvider.CreateCommand(query, connection);
+            commando.Parameters.Add(DbProvider.CreateParameter("@Mes", mes, DbType.Int32, _databaseType));
+            await using var reader = await commando.ExecuteReaderAsync();
+
+            //Finalizar
             throw new NotImplementedException();
         }
 

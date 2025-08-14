@@ -1,4 +1,5 @@
-﻿using Academia.Domain.Entities;
+﻿//Peterson Wigggers
+using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Repositories;
 using AcademiaDoZe.Infrastructure.Data;
@@ -19,16 +20,14 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 await using var connection = await GetOpenConnectionAsync();
                 string query = _databaseType == DatabaseType.SqlServer
                 ?
-                $"INSERT INTO {TableName} (aluno_id, colaborador_id, plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) " +
+                $"INSERT INTO {TableName} (aluno_id, plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) " +
                 $"OUTPUT INSERTED.id_matricula " +
-                $"VALUES (@Aluno_id, @Colaborador_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao);"
-                : $"INSERT INTO {TableName} (aluno_id, colaborador_id, plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) "
-                + "VALUES (@Aluno_id, @Colaborador_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao); "
+                $"VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao);"
+                : $"INSERT INTO {TableName} (aluno_id,  plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) "
+                + "VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao); "
                 + "SELECT LAST_INSERT_ID();";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
-                //Como vai ser colocado o Id do colaborador? 
-                command.Parameters.Add(DbProvider.CreateParameter("@Colaborador_id", IdColaborador, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Plano", (int)entity.Plano, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", entity.DataInicio, DbType.Date, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Date_fim", entity.DataFim, DbType.Date, _databaseType));
@@ -54,7 +53,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 await using var connection = await GetOpenConnectionAsync();
                 string query = $"UPDATE {TableName} "
                 +"SET aluno_id = @Aluno_id, "
-                + "colaborador_id = @Colaborador_id, "
                 + "plano = @Plano, "
                 + "data_inicio = @Data_inicio, "
                 + "data_fim = @Data_fim, "
@@ -64,8 +62,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 + $"WHERE {IdTableName} = @Id";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
-                //Como vai ser colocado o Id do colaborador? 
-                command.Parameters.Add(DbProvider.CreateParameter("@Colaborador_id", IdColaborador, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Plano", (int)entity.Plano, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", entity.DataInicio, DbType.Date, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Date_fim", entity.DataFim, DbType.Date, _databaseType));
@@ -160,10 +156,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 var alunoId = Convert.ToInt32(reader["aluno_id"]);
                 var alunoRepository = new AlunoRepository(_connectionString, _databaseType);
                 var aluno = await alunoRepository.ObterPorId(alunoId) ?? throw new InvalidOperationException($"Aluno com ID {alunoId} não encontrado.");
-                // Como iremos tratar o colaborador ?
-                var IdColaborador = Convert.ToInt32(reader["colaborador_id"]);
-                var colaboradorRepository = new ColaboradorRepository(_connectionString, _databaseType);
-                var colaborador = await colaboradorRepository.ObterPorId(IdColaborador) ?? throw new InvalidOperationException($"Colaborador com ID {IdColaborador} não encontrado.");
 
                 var matricula = Matricula.Criar(
                     alunoMatricula: aluno,

@@ -6,6 +6,7 @@ using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
+using System.Collections.Generic;
 
 namespace AcademiaDoZe.Infraestrutura.Repositories
 {
@@ -135,21 +136,31 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
 
         public async Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
         {
-            if (mes <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero" + nameof(mes));
-            await using var connection = await GetOpenConnectionAsync();
-            //Falta filtrar por mês
-            string query = $"SELECT TOP 1 " +
-                            $"CAST(data_acesso AS DATE) AS data, " +
-                            $"COUNT(*) AS total_acessos FROM {TableName}"
-                        + $"WHERE MONTH(data_acesso) = @Mes"
-                        + $"GROUP BY CAST(data_acesso AS DATE)"
-                        + $"ORDER BY total_acessos DESC";
-            await using var commando = DbProvider.CreateCommand(query, connection);
-            commando.Parameters.Add(DbProvider.CreateParameter("@Mes", mes, DbType.Int32, _databaseType));
-            await using var reader = await commando.ExecuteReaderAsync();
+            try
+            {
 
-            //Finalizar
-            throw new NotImplementedException();
+                if (mes <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero" + nameof(mes));
+                await using var connection = await GetOpenConnectionAsync();
+                //Falta filtrar por mês
+                string query = $"SELECT TOP 1 " +
+                                $"CAST(data_acesso AS DATE) AS data, " +
+                                $"COUNT(*) AS total_acessos FROM {TableName}"
+                            + $"WHERE MONTH(data_acesso) = @Mes"
+                            + $"GROUP BY DATEPART(HOUR, GETDATE()) AS hora"
+                            + $"ORDER BY total_acessos DESC";
+                await using var commando = DbProvider.CreateCommand(query, connection);
+                commando.Parameters.Add(DbProvider.CreateParameter("@Mes", mes, DbType.Int32, _databaseType));
+                await using var reader = await commando.ExecuteReaderAsync();
+                if (await reader.ReadAsync())
+                {
+                    var dateTime = Convert.ToDateTime(reader["hora"]);
+                    var resultado = new Dictionary<TimeOnly, int>();
+                    resultado.Add(TimeOnly.FromDateTime(dateTime), Convert.ToInt32(reader["totoal_acessos"]));
+                    return resultado;
+                }
+                return null;
+            }
+            catch (DbException ex) { throw new InvalidOperationException($"Erro ao obter horário mais procurado por mês: {ex.Message}", ex); }
         }
 
         public Task<Dictionary<int, TimeSpan>> GetPermanenciaMediaPorMes(int mes)

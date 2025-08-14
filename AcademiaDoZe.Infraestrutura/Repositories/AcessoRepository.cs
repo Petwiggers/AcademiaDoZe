@@ -136,12 +136,11 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
 
         public async Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
         {
+
             try
             {
-
                 if (mes <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero" + nameof(mes));
                 await using var connection = await GetOpenConnectionAsync();
-                //Falta filtrar por mês
                 string query = $"SELECT TOP 1 " +
                                 $"CAST(data_acesso AS DATE) AS data, " +
                                 $"COUNT(*) AS total_acessos FROM {TableName}"
@@ -163,8 +162,26 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao obter horário mais procurado por mês: {ex.Message}", ex); }
         }
 
-        public Task<Dictionary<int, TimeSpan>> GetPermanenciaMediaPorMes(int mes)
+        public async Task<Dictionary<int, TimeSpan>> GetPermanenciaMediaPorMes(int mes)
         {
+            if (mes <= 0) throw new InvalidOperationException("O número do mês deve ser maior que zero" + nameof(mes));
+            await using var connection = await GetOpenConnectionAsync();
+
+            string query = $"SELECT pessoa_id, data_hora FROM {TableName}"
+                + $"WHERE MONTH(data_hora) = @Mes";
+            await using var commando = DbProvider.CreateCommand(query, connection);
+            commando.Parameters.Add(DbProvider.CreateParameter("@Mes", mes, DbType.Int32, _databaseType));
+            await using var reader = await commando.ExecuteReaderAsync();
+            decimal TotalHotas = 0;
+            int totalAcessos = 0;
+            List<int> idsIdentificado = new List<int>();
+            var acessos = new List<Acesso>();
+            while (await reader.ReadAsync())
+            {
+                 acessos.Add(await MapAsync(reader));
+            }
+
+            //Finalizar
             throw new NotImplementedException();
         }
 
@@ -181,15 +198,10 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                     var repository = new AlunoRepository(_connectionString, _databaseType);
                     pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Aluno com ID {pessoaId} não encontrado.");
                 }
-                else if (pessoaTipo == EPessoaTipo.Colaborador)
-                {
-                    var repository = new ColaboradorRepository(_connectionString, _databaseType);
-                    pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Colaborador com ID {pessoaId} não encontrado.");
-                }
-                else
+                else if (!(pessoaTipo == EPessoaTipo.Colaborador))
                 {
                     throw new InvalidOperationException($"Tipo de pessoa inválido: {pessoaTipo}");
-                }                
+                }               
                 // Cria o objeto aluno usando o método de fábrica
                 var acesso = Acesso.Criar(pessoaTipo, pessoa, 
                     Convert.ToDateTime(reader["data_hora"])

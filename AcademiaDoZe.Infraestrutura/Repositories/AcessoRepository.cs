@@ -164,6 +164,12 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             await using var reader = await commando.ExecuteReaderAsync();
             decimal TotalHotas = 0;
             int totalAcessos = 0;
+            List<int> idsIdentificado = new List<int>();
+            var acessos = new List<Acesso>();
+            while (await reader.ReadAsync())
+            {
+                 acessos.Add(await MapAsync(reader));
+            }
 
             //Finalizar
             throw new NotImplementedException();
@@ -182,15 +188,10 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                     var repository = new AlunoRepository(_connectionString, _databaseType);
                     pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Aluno com ID {pessoaId} não encontrado.");
                 }
-                else if (pessoaTipo == EPessoaTipo.Colaborador)
-                {
-                    var repository = new ColaboradorRepository(_connectionString, _databaseType);
-                    pessoa = await repository.ObterPorId(pessoaId) ?? throw new InvalidOperationException($"Colaborador com ID {pessoaId} não encontrado.");
-                }
-                else
+                else if (!(pessoaTipo == EPessoaTipo.Colaborador))
                 {
                     throw new InvalidOperationException($"Tipo de pessoa inválido: {pessoaTipo}");
-                }                
+                }               
                 // Cria o objeto aluno usando o método de fábrica
                 var acesso = Acesso.Criar(pessoaTipo, pessoa, 
                     Convert.ToDateTime(reader["data_hora"])

@@ -2,6 +2,7 @@
 using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Exceptions;
+using AcademiaDoZe.Domain.ValueObjects;
 
 namespace AcademiaDoZe.Domain.Tests
 {

@@ -1,4 +1,5 @@
 ﻿//Peterson Wiggers
+using AcademiaDoZe.Domain.ValueObjects;
 namespace Academia.Domain.Entities;
 
 using Academia.Domein.Services;

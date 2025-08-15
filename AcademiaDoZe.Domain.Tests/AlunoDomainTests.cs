@@ -1,6 +1,7 @@
 ﻿//Peterson Wigggers
 using Academia.Domain.Entities;
 using AcademiaDoZe.Domain.Exceptions;
+using AcademiaDoZe.Domain.ValueObjects;
 namespace AcademiaDoZe.Domain.Tests
 {
     public class AlunoDomainTests

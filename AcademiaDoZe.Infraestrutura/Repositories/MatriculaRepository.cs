@@ -6,6 +6,7 @@ using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
+using AcademiaDoZe.Domain.ValueObjects;
 
 namespace AcademiaDoZe.Infraestrutura.Repositories
 {

@@ -4,6 +4,7 @@ using AcademiaDoZe.Domain.Enums;
 using AcademiaDoZe.Domain.Exceptions;
 using AcademiaDoZe.Domain.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using AcademiaDoZe.Domain.ValueObjects;
 
 public class Colaborador : Pessoa
 {
@@ -82,7 +83,6 @@ public class Colaborador : Pessoa
         if (!Enum.IsDefined(tipo)) throw new DomainException("TIPO_COLABORADOR_INVALIDO");
 
         if (!Enum.IsDefined(vinculo)) throw new DomainException("VINCULO_COLABORADOR_INVALIDO");
-        if (tipo == EColaboradorTipo.Administrador && vinculo == EColaboradorVinculo.CLT) throw new DomainException("ADMINISTRADOR_CLT_INVALIDO");
 
         return new Colaborador(nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
     }

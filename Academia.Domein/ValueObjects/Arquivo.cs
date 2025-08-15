@@ -1,6 +1,7 @@
 ﻿//Peterson Wiggers
-using System;
 using AcademiaDoZe.Domain.Exceptions;
+
+namespace AcademiaDoZe.Domain.ValueObjects;
 public record Arquivo
 {
     public byte[] Conteudo { get; }

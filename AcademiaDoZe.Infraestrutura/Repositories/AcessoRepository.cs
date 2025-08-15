@@ -6,7 +6,6 @@ using AcademiaDoZe.Infrastructure.Data;
 using AcademiaDoZe.Infrastructure.Repositories;
 using System.Data;
 using System.Data.Common;
-using System.Collections.Generic;
 
 namespace AcademiaDoZe.Infraestrutura.Repositories
 {
@@ -136,7 +135,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
 
         public async Task<Dictionary<TimeOnly, int>> GetHorarioMaisProcuradoPorMes(int mes)
         {
-
             try
             {
                 if (mes <= 0) throw new InvalidOperationException("O número de dias deve ser maior que zero" + nameof(mes));
@@ -166,7 +164,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             if (mes <= 0) throw new InvalidOperationException("O número do mês deve ser maior que zero" + nameof(mes));
             await using var connection = await GetOpenConnectionAsync();
-
             string query = $"SELECT pessoa_id, data_hora FROM {TableName}"
                 + $"WHERE MONTH(data_hora) = @Mes";
             await using var commando = DbProvider.CreateCommand(query, connection);
@@ -179,6 +176,19 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             while (await reader.ReadAsync())
             {
                  acessos.Add(await MapAsync(reader));
+            }
+
+            while (acessos.Count > 0)
+            {
+                var acesso = acessos.First();
+                if (idsIdentificado.Contains(acesso.AlunoColaborador.Id)) continue;
+                idsIdentificado.Add(acesso.AlunoColaborador.Id);
+                var acessosDoAluno = acessos.Where(a => a.AlunoColaborador.Id == acesso.AlunoColaborador.Id).ToList();
+                if (acessosDoAluno.Count < 2) continue; // precisa de pelo menos 2 acessos para calcular permanência
+                var entrada = acessosDoAluno.Min(a => a.DataHora);
+                var saida = acessosDoAluno.Max(a => a.DataHora);
+                TotalHotas += (decimal)(saida - entrada).TotalHours;
+                totalAcessos++;
             }
 
             //Finalizar

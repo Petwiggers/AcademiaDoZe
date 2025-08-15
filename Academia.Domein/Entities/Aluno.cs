@@ -1,7 +1,7 @@
 ﻿//Peterson Wiggers
 using AcademiaDoZe.Domain.Exceptions;
 using AcademiaDoZe.Domain.Services;
-
+using AcademiaDoZe.Domain.ValueObjects;
 namespace Academia.Domain.Entities;
 public class Aluno : Pessoa
 {

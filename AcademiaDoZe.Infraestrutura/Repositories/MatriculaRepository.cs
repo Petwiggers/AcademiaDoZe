@@ -104,7 +104,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             }
         }
 
-        public async Task<IEnumerable<Matricula>> ObterPorAluno(int alunoId)
+        public async Task<Matricula> ObterPorAluno(int alunoId)
         {
             try
             {
@@ -113,12 +113,15 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 string query = $"select * from {TableName} where data_fim > GETDATE();";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 await using var reader = await command.ExecuteReaderAsync();
-                var matriculas = new List<Matricula>();
+                 
                 while (reader.Read())
                 {
-                    matriculas.Add(await MapAsync(reader));
+                    var matricula = await MapAsync(reader);
+                    return matricula;
                 }
-                return matriculas;
+
+                return null;
+                
             }
             catch (DbException ex)
             {

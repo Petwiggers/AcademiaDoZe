@@ -32,7 +32,6 @@ public class Aluno : Pessoa
     {
         if (string.IsNullOrWhiteSpace(nomeCompleto)) throw new DomainException("NOME_OBRIGATORIO");
         nomeCompleto = TextoNormalizadoService.LimparEspacos(nomeCompleto);
-        nomeCompleto = TextoNormalizadoService.ParaMaiusculo(nomeCompleto);
 
         if (string.IsNullOrWhiteSpace(cpf)) throw new DomainException("CPF_OBRIGATORIO");
         cpf = TextoNormalizadoService.LimparEDigitos(cpf);

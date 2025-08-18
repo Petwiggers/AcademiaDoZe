@@ -74,7 +74,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 + "numero = @Numero, "
                 + "complemento = @Complemento, "
                 + "senha = @Senha, "
-                + "foto = @Foto, "
+                + "foto = @Foto "
                 + "WHERE id_aluno = @Id";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Id", entity.Id, DbType.Int32, _databaseType));
@@ -104,7 +104,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
-                await using var connection = await GetOpenConnectionAsync();
+                await using var connection = await GetOpenConnectionAsync();//Adicionar TableName
                 string query = $"SELECT COUNT(1) FROM {TableName} WHERE cpf = @Cpf";
                 if (id.HasValue)
                 {
@@ -117,6 +117,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                     command.Parameters.Add(DbProvider.CreateParameter("@Id", id.Value, DbType.Int32, _databaseType));
                 }
                 var count = await command.ExecuteScalarAsync();
+                Console.WriteLine($"Verificando CPF: {cpf}, Count: {count}");
                 return Convert.ToInt32(count) > 0;
             }
             catch (DbException ex)

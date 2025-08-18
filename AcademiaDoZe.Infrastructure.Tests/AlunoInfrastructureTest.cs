@@ -21,11 +21,11 @@ namespace AcademiaDoZe.Infrastructure.Tests
             var _cpf = "12345678900";
             // verifica se cpf já existe
 
-            var repoColaboradorCpf = new ColaboradorRepository(ConnectionString, DatabaseType);
+            var repoAlunoCpf = new AlunoRepository(ConnectionString, DatabaseType);
 
-            var cpfExistente = await repoColaboradorCpf.CpfJaExiste(_cpf);
+            var cpfExistente = await repoAlunoCpf.CpfJaExiste(_cpf);
             Assert.False(cpfExistente, "CPF já existe no banco de dados.");
-            var colaborador = Colaborador.Criar(
+            var aluno = Aluno.Criar(
                     "zé",
                     _cpf,
                     new DateOnly(2010, 10, 09),
@@ -35,54 +35,47 @@ namespace AcademiaDoZe.Infrastructure.Tests
                     "123",
                     "complemento casa",
                     "abcBolinhas",
-                    arquivo,
-                    new DateOnly(2024, 05, 04),
-                    EColaboradorTipo.Administrador,
-                    EColaboradorVinculo.CLT
-
+                    arquivo
             );
             // Adicionar
 
-            var repoColaboradorAdicionar = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var colaboradorInserido = await repoColaboradorAdicionar.Adicionar(colaborador);
-            Assert.NotNull(colaboradorInserido);
-            Assert.True(colaboradorInserido.Id > 0);
-
+            var repoAlunoAdicionar = new AlunoRepository(ConnectionString, DatabaseType);
+            var alunoInserido = await repoAlunoAdicionar.Adicionar(aluno);
+            Assert.NotNull(alunoInserido);
+            Assert.True(alunoInserido.Id > 0);
         }
+
         [Fact]
         public async Task Aluno_ObterPorCpf_Atualizar()
         {
             var _cpf = "12345678900";
             Arquivo arquivo = Arquivo.Criar(new byte[] { 1, 2, 3 });
-            var repoColaboradorObterPorCpf = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var colaboradorExistente = await repoColaboradorObterPorCpf.ObterPorCpf(_cpf);
-            Assert.NotNull(colaboradorExistente);
+            var repoAlunoObterPorCpf = new AlunoRepository(ConnectionString, DatabaseType);
+            var alunoExistente = await repoAlunoObterPorCpf.ObterPorCpf(_cpf);
+            Assert.NotNull(alunoExistente);
 
-            // criar novo colaborador com os mesmos dados, editando o que quiser
-            var colaboradorAtualizado = Colaborador.Criar(
+            // criar novo aluno com os mesmos dados, editando o que quiser
+            var alunoAtualizado = Aluno.Criar(
                 "zé dos testes 123",
-                colaboradorExistente.Cpf,
-                colaboradorExistente.DataNascimento,
-                colaboradorExistente.Telefone,
-                colaboradorExistente.Email,
-                colaboradorExistente.Endereco,
-                colaboradorExistente.Numero,
-                colaboradorExistente.Complemento,
-                colaboradorExistente.Senha,
-                arquivo,
-                colaboradorExistente.DataAdmissao,
-                colaboradorExistente.Tipo,
-                colaboradorExistente.Vinculo
+                alunoExistente.Cpf,
+                alunoExistente.DataNascimento,
+                alunoExistente.Telefone,
+                alunoExistente.Email,
+                alunoExistente.Endereco,
+                alunoExistente.Numero,
+                alunoExistente.Complemento,
+                alunoExistente.Senha,
+                arquivo
             );
             // Usar reflexão para definir o ID
 
             var idProperty = typeof(Entity).GetProperty("Id");
 
-            idProperty?.SetValue(colaboradorAtualizado, colaboradorExistente.Id);
+            idProperty?.SetValue(alunoAtualizado, alunoExistente.Id);
             // Teste de Atualização
 
-            var repoColaboradorAtualizar = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var resultadoAtualizacao = await repoColaboradorAtualizar.Atualizar(colaboradorAtualizado);
+            var repoAlunoAtualizar = new AlunoRepository(ConnectionString, DatabaseType);
+            var resultadoAtualizacao = await repoAlunoAtualizar.Atualizar(alunoAtualizado);
             Assert.NotNull(resultadoAtualizacao);
 
             Assert.Equal("zé dos testes 123", resultadoAtualizacao.Nome);
@@ -93,42 +86,42 @@ namespace AcademiaDoZe.Infrastructure.Tests
         {
             var _cpf = "12345678900";
             Arquivo arquivo = Arquivo.Criar(new byte[] { 1, 2, 3 });
-            var repoColaboradorObterPorCpf = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var colaboradorExistente = await repoColaboradorObterPorCpf.ObterPorCpf(_cpf);
-            Assert.NotNull(colaboradorExistente);
+            var repoAlunoObterPorCpf = new AlunoRepository(ConnectionString, DatabaseType);
+            var alunoExistente = await repoAlunoObterPorCpf.ObterPorCpf(_cpf);
+            Assert.NotNull(alunoExistente);
             var novaSenha = "novaSenha123";
-            var repoColaboradorTrocarSenha = new ColaboradorRepository(ConnectionString, DatabaseType);
+            var repoAlunoTrocarSenha = new AlunoRepository(ConnectionString, DatabaseType);
 
-            var resultadoTrocaSenha = await repoColaboradorTrocarSenha.TrocarSenha(colaboradorExistente.Id, novaSenha);
+            var resultadoTrocaSenha = await repoAlunoTrocarSenha.TrocarSenha(alunoExistente.Id, novaSenha);
             Assert.True(resultadoTrocaSenha);
 
-            var repoColaboradorObterPorId = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var colaboradorAtualizado = await repoColaboradorObterPorId.ObterPorId(colaboradorExistente.Id);
-            Assert.NotNull(colaboradorAtualizado);
-            Assert.Equal(novaSenha, colaboradorAtualizado.Senha);
+            var repoAlunoObterPorId = new AlunoRepository(ConnectionString, DatabaseType);
+            var alunoAtualizado = await repoAlunoObterPorId.ObterPorId(alunoExistente.Id);
+            Assert.NotNull(alunoAtualizado);
+            Assert.Equal(novaSenha, alunoAtualizado.Senha);
         }
         [Fact]
         public async Task Aluno_ObterPorCpf_Remover_ObterPorId()
         {
             var _cpf = "12345678900";
-            var repoColaboradorObterPorCpf = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var colaboradorExistente = await repoColaboradorObterPorCpf.ObterPorCpf(_cpf);
-            Assert.NotNull(colaboradorExistente);
+            var repoAlunoObterPorCpf = new AlunoRepository(ConnectionString, DatabaseType);
+            var alunoExistente = await repoAlunoObterPorCpf.ObterPorCpf(_cpf);
+            Assert.NotNull(alunoExistente);
 
             // Remover
-            var repoColaboradorRemover = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var resultadoRemover = await repoColaboradorRemover.Remover(colaboradorExistente.Id);
+            var repoAlunoRemover = new AlunoRepository(ConnectionString, DatabaseType);
+            var resultadoRemover = await repoAlunoRemover.Remover(alunoExistente.Id);
             Assert.True(resultadoRemover);
 
-            var repoColaboradorObterPorId = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var resultadoRemovido = await repoColaboradorObterPorId.ObterPorId(colaboradorExistente.Id);
+            var repoAlunoObterPorId = new AlunoRepository(ConnectionString, DatabaseType);
+            var resultadoRemovido = await repoAlunoObterPorId.ObterPorId(alunoExistente.Id);
             Assert.Null(resultadoRemovido);
         }
         [Fact]
         public async Task Aluno_ObterTodos()
         {
-            var repoColaboradorRepository = new ColaboradorRepository(ConnectionString, DatabaseType);
-            var resultado = await repoColaboradorRepository.ObterTodos();
+            var repoAlunoRepository = new AlunoRepository(ConnectionString, DatabaseType);
+            var resultado = await repoAlunoRepository.ObterTodos();
             Assert.NotNull(resultado);
         }
     }

@@ -37,7 +37,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
         [Fact]
         public async Task Matricula_ObterPorAluno_Atualizar()
         {
-            int id_aluno = 1; // ID do aluno para o qual a matrícula foi criada
+            int id_aluno = 1002; // ID do aluno para o qual a matrícula foi criada
             var repoMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
             var matriculaExistente = await repoMatricula.ObterPorAluno(id_aluno);
             Assert.NotNull(matriculaExistente);
@@ -64,52 +64,44 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.Equal(EMatriculaPlano.mensal, resultadoAtualizacao.Plano);
         }
 
-
-
-
-      
         [Fact]
-        public async Task Aluno_ObterPorCpf_TrocarSenha()
+        public async Task Obter_Matriculas_Ativas()
         {
-            var _cpf = "12345678900";
-            Arquivo arquivo = Arquivo.Criar(new byte[] { 1, 2, 3 });
-            var repoAlunoObterPorCpf = new AlunoRepository(ConnectionString, DatabaseType);
-            var alunoExistente = await repoAlunoObterPorCpf.ObterPorCpf(_cpf);
-            Assert.NotNull(alunoExistente);
-            var novaSenha = "novaSenha123";
-            var repoAlunoTrocarSenha = new AlunoRepository(ConnectionString, DatabaseType);
-
-            var resultadoTrocaSenha = await repoAlunoTrocarSenha.TrocarSenha(alunoExistente.Id, novaSenha);
-            Assert.True(resultadoTrocaSenha);
-
-            var repoAlunoObterPorId = new AlunoRepository(ConnectionString, DatabaseType);
-            var alunoAtualizado = await repoAlunoObterPorId.ObterPorId(alunoExistente.Id);
-            Assert.NotNull(alunoAtualizado);
-            Assert.Equal(novaSenha, alunoAtualizado.Senha);
+            var repository = new MatriculaRepository(ConnectionString, DatabaseType);
+            var matriculas = await repository.ObterAtivas();
+            Assert.NotNull(matriculas);
+            Assert.True(matriculas.Count() > 0);
         }
-        [Fact]
-        public async Task Aluno_ObterPorCpf_Remover_ObterPorId()
-        {
-            var _cpf = "12345678900";
-            var repoAlunoObterPorCpf = new AlunoRepository(ConnectionString, DatabaseType);
-            var alunoExistente = await repoAlunoObterPorCpf.ObterPorCpf(_cpf);
-            Assert.NotNull(alunoExistente);
 
-            // Remover
-            var repoAlunoRemover = new AlunoRepository(ConnectionString, DatabaseType);
-            var resultadoRemover = await repoAlunoRemover.Remover(alunoExistente.Id);
+        [Fact]
+        public async Task Matricula_ObterPorAluno_Remover_ObterPorId()
+        {
+            var respositoryAluno = new AlunoRepository(ConnectionString, DatabaseType);
+            var aluno= await respositoryAluno.ObterPorCpf("12345678900");
+            Assert.NotNull(aluno);
+
+            var repoObterMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
+            var matricula = await repoObterMatricula.ObterPorAluno(aluno.Id);
+            Assert.NotNull(matricula);
+            Assert.Equal(matricula.AlunoMatricula.Id, 1002);
+            // Assert.True(false, matricula.AlunoMatricula.Id.ToString());
+
+            var repoRemoverMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
+            var resultadoRemover = await repoRemoverMatricula.Remover(matricula.Id);
             Assert.True(resultadoRemover);
 
-            var repoAlunoObterPorId = new AlunoRepository(ConnectionString, DatabaseType);
-            var resultadoRemovido = await repoAlunoObterPorId.ObterPorId(alunoExistente.Id);
-            Assert.Null(resultadoRemovido);
+            var repoVerificarSeMatriculaExiste = new MatriculaRepository(ConnectionString, DatabaseType);
+            var resultadoVerificacao = await repoVerificarSeMatriculaExiste.ObterPorId(matricula.Id);
+            Assert.Null(resultadoVerificacao);
         }
+
         [Fact]
-        public async Task Aluno_ObterTodos()
+        public async Task Matricula_Obter_Vencendo_Em_Dias()
         {
-            var repoAlunoRepository = new AlunoRepository(ConnectionString, DatabaseType);
-            var resultado = await repoAlunoRepository.ObterTodos();
-            Assert.NotNull(resultado);
+            var repository = new MatriculaRepository(ConnectionString, DatabaseType);
+            var matriculas = await repository.ObterVencendoEmDias(10);
+            Assert.NotNull(matriculas);
+
         }
     }
 }

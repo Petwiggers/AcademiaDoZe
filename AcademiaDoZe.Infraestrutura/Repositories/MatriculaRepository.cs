@@ -15,9 +15,12 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         public MatriculaRepository (string connectionString, DatabaseType databaseType) : base (connectionString, databaseType) { }
         public override async Task<Matricula> Adicionar(Matricula entity)
         {
-            
             try
             {
+                Matricula matricula = await ObterPorAluno(entity.Id);
+
+                if (matricula != null && matricula.DataFim > DateOnly.FromDateTime(DateTime.Today)) throw new InvalidOperationException("ALUNO_JA_POSSUI_MATRICULA");
+
                 await using var connection = await GetOpenConnectionAsync();
                 string query = _databaseType == DatabaseType.SqlServer
                 ?
@@ -31,9 +34,9 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Plano", (int)entity.Plano, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", entity.DataInicio, DbType.Date, _databaseType));
-                command.Parameters.Add(DbProvider.CreateParameter("@Date_fim", entity.DataFim, DbType.Date, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_fim", entity.DataFim, DbType.Date, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Objetivo", entity.Objetivo, DbType.String, _databaseType));
-                command.Parameters.Add(DbProvider.CreateParameter("@Numero", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Restricao_medica", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Obs_restricao", entity.ObservacoesRestricoes, DbType.String, _databaseType));
                 var id = await command.ExecuteScalarAsync();
                 if (id != null && id != DBNull.Value)
@@ -53,22 +56,22 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             {
                 await using var connection = await GetOpenConnectionAsync();
                 string query = $"UPDATE {TableName} "
-                +"SET aluno_id = @Aluno_id, "
-                + "plano = @Plano, "
+                + "SET plano = @Plano,"
                 + "data_inicio = @Data_inicio, "
                 + "data_fim = @Data_fim, "
                 + "objetivo = @Objetivo, "
                 + "restricao_medica = @Restricao_medica, "
-                + "obs_restricao= @Obs_restricao, "
-                + $"WHERE {IdTableName} = @Id";
+                + "obs_restricao= @Obs_restricao "
+                + $"WHERE {IdTableName} = @Aluno_id";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Plano", (int)entity.Plano, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", entity.DataInicio, DbType.Date, _databaseType));
-                command.Parameters.Add(DbProvider.CreateParameter("@Date_fim", entity.DataFim, DbType.Date, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Data_fim", entity.DataFim, DbType.Date, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Objetivo", entity.Objetivo, DbType.String, _databaseType));
-                command.Parameters.Add(DbProvider.CreateParameter("@Numero", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Restricao_medica", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Obs_restricao", entity.ObservacoesRestricoes, DbType.String, _databaseType));
+
                 int rowsAffected = await command.ExecuteNonQueryAsync();
                 if (rowsAffected == 0)
                 {
@@ -108,10 +111,10 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
-
                 await using var connection = await GetOpenConnectionAsync();
-                string query = $"select * from {TableName} where data_fim > GETDATE();";
+                string query = $"select * from {TableName} where aluno_id = @Aluno_ID;";
                 await using var command = DbProvider.CreateCommand(query, connection);
+                command.Parameters.Add(DbProvider.CreateParameter("@Aluno_ID", alunoId, DbType.Int32, _databaseType));
                 await using var reader = await command.ExecuteReaderAsync();
                  
                 while (reader.Read())
@@ -133,9 +136,8 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
-
                 await using var connection = await GetOpenConnectionAsync();
-                string query = $"select* from tb_matricula"
+                string query = $"select * from tb_matricula "
                 + "where data_fim <= CAST(DATEADD(DAY, @Dias, GETDATE()) AS date)"
                 + "AND data_fim >= CAST(GETDATE() as date);";
                 await using var command = DbProvider.CreateCommand(query, connection);
@@ -173,7 +175,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 );
                 // Define o ID usando reflection
                 var idProperty = typeof(Entity).GetProperty("Id");
-                idProperty?.SetValue(aluno, Convert.ToInt32(reader["id_matricula"]));
+                idProperty?.SetValue(matricula, Convert.ToInt32(reader["id_matricula"]));
                 return matricula;
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados da matricula: {ex.Message}", ex); }

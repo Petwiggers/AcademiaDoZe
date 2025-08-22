@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Domain.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infraestrutura", "AcademiaDoZe.Infraestrutura\AcademiaDoZe.Infraestrutura.csproj", "{8B6478B2-0E08-4A56-9A20-8A7B6A7C7750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infrastructure.Tests.", "AcademiaDoZe.Infrastructure.Tests\AcademiaDoZe.Infrastructure.Tests..csproj", "{8F41FA81-16EC-400C-ADFF-B6B5CDA83662}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infrastructure.Tests", "AcademiaDoZe.Infrastructure.Tests\AcademiaDoZe.Infrastructure.Tests.csproj", "{8F41FA81-16EC-400C-ADFF-B6B5CDA83662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

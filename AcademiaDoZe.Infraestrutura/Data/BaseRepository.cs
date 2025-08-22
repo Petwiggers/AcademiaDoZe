@@ -103,7 +103,7 @@ namespace AcademiaDoZe.Infrastructure.Repositories
         }
         public virtual async Task<bool> Remover(int id)
         {
-            if (id <= 0) { throw new ArgumentException("ID_NAO_INFORMADO_MENOR_UM", nameof(id)); }
+            if (id <= 0) { throw new ArgumentException("ID_NAO_INFORMADO_MENOR_UM_ID="+id, nameof(id)); }
             try
             {
                 await using var connection = await GetOpenConnectionAsync();

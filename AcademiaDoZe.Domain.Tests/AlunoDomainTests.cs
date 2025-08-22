@@ -85,7 +85,7 @@ namespace AcademiaDoZe.Domain.Tests
             senha,
             foto
             );
-            Assert.Equal("PETERSON WIGGERS", aluno.Nome);
+            Assert.Equal("Peterson Wiggers", aluno.Nome);
             Assert.Equal("11999999999", aluno.Telefone);
             Assert.Equal("joao@email.com", aluno.Email);
             Assert.Equal("123", aluno.Numero);

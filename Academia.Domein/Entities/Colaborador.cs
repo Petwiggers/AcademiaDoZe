@@ -12,27 +12,29 @@ public class Colaborador : Pessoa
     public EColaboradorTipo Tipo { get; private set;}
     public EColaboradorVinculo Vinculo { get; private set;}
         
-    private Colaborador(string nomeCompleto,
-    string cpf,
-    DateOnly dataNascimento,
-    string telefone,
-    string email,
-    Logradouro endereco,
-    string numero,
-    string complemento,
-    string senha,
-    Arquivo foto,
-    DateOnly dataAdmissao,
-    EColaboradorTipo tipo,
-    EColaboradorVinculo vinculo)
-    : base(nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto)
+    private Colaborador(int id,
+        string nomeCompleto,
+        string cpf,
+        DateOnly dataNascimento,
+        string telefone,
+        string email,
+        Logradouro endereco,
+        string numero,
+        string complemento,
+        string senha,
+        Arquivo foto,
+        DateOnly dataAdmissao,
+        EColaboradorTipo tipo,
+        EColaboradorVinculo vinculo)
+    : base(id, nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto)
     {
         DataAdmissao = dataAdmissao;
         Tipo = tipo;
         Vinculo = vinculo;
     }
 
-    public static Colaborador Criar(string nomeCompleto,
+    public static Colaborador Criar(int id, 
+        string nomeCompleto,
         string cpf,
         DateOnly dataNascimento,
         string telefone,
@@ -84,14 +86,7 @@ public class Colaborador : Pessoa
 
         if (!Enum.IsDefined(vinculo)) throw new DomainException("VINCULO_COLABORADOR_INVALIDO");
 
-        return new Colaborador(nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
+        return new Colaborador(id, nomeCompleto, cpf, dataNascimento, telefone, email, endereco, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
     }
-    /*
-    Deve ser possível registrar os colaboradores com:
-
-    nome completo, cpf, data de nascimento, telefone, e-mail, senha, /foto, 
-    logradouro {cep, país, estado, cidade, bairro, nome logradouro}, 
-    número e /complemento, data admissão, tipo {administrador, atendente, instrutor}, vínculo {clt, estágio}.
-    */
 }
 

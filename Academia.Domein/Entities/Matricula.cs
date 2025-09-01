@@ -19,16 +19,18 @@ public class Matricula : Entity
     public string ObservacoesRestricoes { get; private set; }
     public Arquivo LaudoMedico { get; private set; }
 
-    private Matricula(Aluno alunoMatricula,
-    EMatriculaPlano plano,
-    DateOnly dataInicio,
-    DateOnly dataFim,
-    string objetivo,
-    EMatriculaRestricoes restricoesMedicas,
-    string observacoes,
-    Arquivo laudoMedico)
-    : base()
+    private Matricula(int id, 
+        Aluno alunoMatricula,
+        EMatriculaPlano plano,
+        DateOnly dataInicio,
+        DateOnly dataFim,
+        string objetivo,
+        EMatriculaRestricoes restricoesMedicas,
+        string observacoes,
+        Arquivo laudoMedico)
+    : base(id)
     {
+        Id= id;
         AlunoMatricula = alunoMatricula;
         Plano = plano;
         DataInicio = dataInicio;
@@ -39,14 +41,15 @@ public class Matricula : Entity
         ObservacoesRestricoes = observacoes;
     }
 
-    public static Matricula Criar(Aluno alunoMatricula,
-    EMatriculaPlano plano,
-    DateOnly dataInicio,
-    DateOnly dataFim,
-    string objetivo,
-    EMatriculaRestricoes restricoesMedicas,
-    string observacoes,
-    Arquivo laudoMedico)
+    public static Matricula Criar(int id, 
+        Aluno alunoMatricula,
+        EMatriculaPlano plano,
+        DateOnly dataInicio,
+        DateOnly dataFim,
+        string objetivo,
+        EMatriculaRestricoes restricoesMedicas,
+        string observacoes,
+        Arquivo laudoMedico)
     {
         if (alunoMatricula ==  null) throw new DomainException("ALUNO_OBRIGATORIO");
         if (string.IsNullOrWhiteSpace(objetivo)) throw new DomainException("OBJETIVO_OBRIGATORIO");
@@ -59,13 +62,7 @@ public class Matricula : Entity
         }
         observacoes = TextoNormalizadoService.LimparEspacos(observacoes);
 
-        return new Matricula(alunoMatricula, plano, dataInicio, dataFim, objetivo, restricoesMedicas, observacoes, laudoMedico);
-
-        /*
-         *aluno, *plano {mensal, trimestral, semestral ou anual}, *data de início, *data final, *objetivo, restrições 
-         *{ex: diabetes, pressão alta, labirintite, alergias, *problemas respiratórios, uso de remédios contínuos, etc.}, 
-         *observações sobre as restrições, laudo médico.*/
-
+        return new Matricula(id, alunoMatricula, plano, dataInicio, dataFim, objetivo, restricoesMedicas, observacoes, laudoMedico);
     }
 }
 

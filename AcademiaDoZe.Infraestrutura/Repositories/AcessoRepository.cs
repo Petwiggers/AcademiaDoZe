@@ -213,12 +213,9 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                     throw new InvalidOperationException($"Tipo de pessoa inválido: {pessoaTipo}");
                 }               
                 // Cria o objeto aluno usando o método de fábrica
-                var acesso = Acesso.Criar(pessoaTipo, pessoa, 
+                var acesso = Acesso.Criar(pessoaId, pessoaTipo, pessoa, 
                     Convert.ToDateTime(reader["data_hora"])
                 );
-                // Define o ID usando reflection
-                var idProperty = typeof(Entity).GetProperty("Id");
-                idProperty?.SetValue(acesso, Convert.ToInt32(reader["id_aluno"]));
                 return acesso;
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados do aluno: {ex.Message}", ex); }

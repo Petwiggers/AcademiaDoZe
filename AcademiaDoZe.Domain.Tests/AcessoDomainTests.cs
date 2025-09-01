@@ -8,21 +8,22 @@ namespace AcademiaDoZe.Domain.Tests
 {
     public class AcessoDomainTests
     {
+        private int id = 1;
         private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1]);
-        private Logradouro GetValidLogradouro() => Logradouro.Criar("12345678", "Rua A", "Centro", "Cidade", "SP", "Brasil");
+        private Logradouro GetValidLogradouro() => Logradouro.Criar(id, "12345678", "Rua A", "Centro", "Cidade", "SP", "Brasil");
 
         private DateTime DateTimeInvalido() => DateTime.Today + new TimeSpan(23,0,0);
         private Aluno CriarAlunoValido()
         {
             var nome = "João da Silva"; var cpf = "12345678901"; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "11999999999";
             var email = "joao@email.com"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = "Senha@1"; var foto = GetValidArquivo();
-            return Aluno.Criar(nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto);
+            return Aluno.Criar(id, nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto);
         }
 
         [Fact]
         public void Cria_Acesso_Valido()
         {
-            var acesso = Acesso.Criar(
+            var acesso = Acesso.Criar(id,
                 EPessoaTipo.Aluno,
                 CriarAlunoValido(),
                 DateTime.Now);
@@ -33,7 +34,7 @@ namespace AcademiaDoZe.Domain.Tests
         [Fact]
         public void CriaAcess_PessoaNull_DeveGerarExcecao()
         {
-            var ex = Assert.Throws<DomainException>(() => Acesso.Criar(
+            var ex = Assert.Throws<DomainException>(() => Acesso.Criar(id,
             EPessoaTipo.Aluno,
             null,
             DateTime.Now)); 
@@ -44,7 +45,7 @@ namespace AcademiaDoZe.Domain.Tests
         [Fact]
         public void CriaAcess_DataHoraInvalida_DeveGerarExcecao()
         {
-            var ex = Assert.Throws<DomainException>(() => Acesso.Criar(
+            var ex = Assert.Throws<DomainException>(() => Acesso.Criar(id,
             EPessoaTipo.Aluno,
             CriarAlunoValido(),
             DateTimeInvalido()));

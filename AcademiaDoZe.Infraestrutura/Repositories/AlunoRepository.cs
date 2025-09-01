@@ -151,7 +151,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 var logradouroRepository = new LogradouroRepository(_connectionString, _databaseType);
                 var logradouro = await logradouroRepository.ObterPorId(logradouroId) ?? throw new InvalidOperationException($"Logradouro com ID {logradouroId} não encontrado.");
                 // Cria o objeto aluno usando o método de fábrica
-                var aluno = Aluno.Criar(
+                var aluno = Aluno.Criar(logradouroId,
                 cpf: reader["cpf"].ToString()!,
                 telefone: reader["telefone"].ToString()!,
                 nomeCompleto: reader["nome"].ToString()!,
@@ -163,9 +163,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 senha: reader["senha"].ToString()!,
                 foto: reader["foto"] is DBNull ? null : Arquivo.Criar((byte[])reader["foto"])
                 );
-                // Define o ID usando reflection
-                var idProperty = typeof(Entity).GetProperty("Id");
-                idProperty?.SetValue(aluno, Convert.ToInt32(reader["id_aluno"]));
                 return aluno;
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados do aluno: {ex.Message}", ex); }

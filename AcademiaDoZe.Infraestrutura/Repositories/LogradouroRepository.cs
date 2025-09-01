@@ -111,15 +111,13 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             try
             {
                 var logradouro = Logradouro.Criar(
+                id: Convert.ToInt32(reader["id_logradouro"]),
                 cep: reader["cep"].ToString()!,
                 nome: reader["nome"].ToString()!,
                 bairro: reader["bairro"].ToString()!,
                 cidade: reader["cidade"].ToString()!,
                 estado: reader["estado"].ToString()!,
                 pais: reader["pais"].ToString()!);
-                // Usando reflexão para definir o ID, já que a propriedade Id é herdada e não tem setter público
-                var idProperty = typeof(Entity).GetProperty("Id");
-                idProperty?.SetValue(logradouro, Convert.ToInt32(reader["id_logradouro"]));
                 return logradouro;
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados do logradouro: {ex.Message}", ex); }

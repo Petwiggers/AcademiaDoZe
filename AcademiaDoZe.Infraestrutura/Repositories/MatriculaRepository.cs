@@ -165,6 +165,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 var aluno = await alunoRepository.ObterPorId(alunoId) ?? throw new InvalidOperationException($"Aluno com ID {alunoId} não encontrado.");
 
                 var matricula = Matricula.Criar(
+                    id: Convert.ToInt32(reader["id_matricula"]),
                     alunoMatricula: aluno,
                     plano: (EMatriculaPlano)Convert.ToInt32(reader["plano"]),
                     dataInicio: DateOnly.FromDateTime(Convert.ToDateTime(reader["data_inicio"])),
@@ -174,9 +175,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                     observacoes: reader["obs_restricao"]?.ToString(),
                     laudoMedico: reader["laudo_medico"] is DBNull ? null : Arquivo.Criar((byte[])reader["laudo_medico"])
                 );
-                // Define o ID usando reflection
-                var idProperty = typeof(Entity).GetProperty("Id");
-                idProperty?.SetValue(matricula, Convert.ToInt32(reader["id_matricula"]));
                 return matricula;
             }
             catch (DbException ex) { throw new InvalidOperationException($"Erro ao mapear dados da matricula: {ex.Message}", ex); }

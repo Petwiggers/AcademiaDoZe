@@ -10,18 +10,20 @@ namespace AcademiaDoZe.Domain.Tests
     {
         // Padrão AAA (Arrange, Act, Assert)
         // Arrange (Organizar): Preparamos tudo que o teste precisa.
-        private Logradouro GetValidLogradouro() => Logradouro.Criar("12345678", "Rua A", "Centro", "Cidade", "SP", "Brasil");
+        private Logradouro GetValidLogradouro() => Logradouro.Criar(id, "12345678", "Rua A", "Centro", "Cidade", "SP", "Brasil");
         private Arquivo GetValidArquivo() => Arquivo.Criar(new byte[1]);
+        public int id = 1;
 
         [Fact] // [Fact] é um atributo que marca este método como um teste para o xUnit.
         public void CriarColaborador_ComDadosValidos_DeveCriarObjeto() // Padrão de Nomenclatura: MetodoTestado_Cenario_ResultadoEsperado
         {
             // Arrange
+            var id = 1;
             var nome = "João da Silva"; var cpf = "12345678901"; var dataNascimento = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var telefone = "11999999999";
             var email = "joao@email.com"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = "Senha@1"; var foto = GetValidArquivo();
             var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
             // Act
-            var colaborador = Colaborador.Criar(nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
+            var colaborador = Colaborador.Criar(id,nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo);
             // Assert
             Assert.NotNull(colaborador);
         }
@@ -34,7 +36,7 @@ namespace AcademiaDoZe.Domain.Tests
             var email = "joao@emailcom"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = "Senha@1"; var foto = GetValidArquivo();
             var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
             // Act
-            var ex = Assert.Throws<DomainException>(() => Colaborador.Criar(nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo));
+            var ex = Assert.Throws<DomainException>(() => Colaborador.Criar(id, nome, cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo));
 
             Assert.Equal("EMAIL_FORMATO", ex.Message);
         }
@@ -48,7 +50,7 @@ namespace AcademiaDoZe.Domain.Tests
             var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
             // Act
             var ex = Assert.Throws<DomainException>(() =>
-                Colaborador.Criar("", cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo));
+                Colaborador.Criar(id, "", cpf, dataNascimento, telefone, email, logradouro, numero, complemento, senha, foto, dataAdmissao, tipo, vinculo));
 
             // Assert
             Assert.Equal("NOME_OBRIGATORIO", ex.Message);
@@ -62,7 +64,7 @@ namespace AcademiaDoZe.Domain.Tests
             var email = "joao@email.com"; var logradouro = GetValidLogradouro(); var numero = "123"; var complemento = "Apto 1"; var senha = " Se nha@1 2 3 "; var foto = GetValidArquivo();
             var dataAdmissao = DateOnly.FromDateTime(DateTime.Today.AddYears(-20)); var tipo = EColaboradorTipo.Instrutor; var vinculo = EColaboradorVinculo.CLT;
             // Act & Assert
-            var colaborador = Colaborador.Criar(
+            var colaborador = Colaborador.Criar(id,
             "   Peterson  Wiggers   ",
             cpf,
             dataNascimento,

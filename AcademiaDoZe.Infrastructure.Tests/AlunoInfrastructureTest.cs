@@ -27,7 +27,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
 
             var cpfExistente = await repoAlunoCpf.CpfJaExiste(_cpf);
             Assert.False(cpfExistente, "CPF já existe no banco de dados.");
-            var aluno = Aluno.Criar(
+            var aluno = Aluno.Criar(1,
                     "zé",
                     _cpf,
                     new DateOnly(2010, 10, 09),
@@ -57,7 +57,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(alunoExistente);
 
             // criar novo aluno com os mesmos dados, editando o que quiser
-            var alunoAtualizado = Aluno.Criar(
+            var alunoAtualizado = Aluno.Criar(1,
                 "zé dos testes 123",
                 alunoExistente.Cpf,
                 alunoExistente.DataNascimento,

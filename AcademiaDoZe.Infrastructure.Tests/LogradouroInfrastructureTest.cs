@@ -12,7 +12,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             var _cep = "12345678";
             // Adicionar
 
-            var logradouro = Logradouro.Criar(_cep, "Rua dos Testes", "Bairro Teste", "Cidade Teste", "TS", "Pais teste");
+            var logradouro = Logradouro.Criar(1,_cep, "Rua dos Testes", "Bairro Teste", "Cidade Teste", "TS", "Pais teste");
 
             var repoLogradouroAdd = new LogradouroRepository(ConnectionString, DatabaseType);
             var logradouroInserido = await repoLogradouroAdd.Adicionar(logradouro);
@@ -32,7 +32,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(logradouroPorCep);
 
             // Atualizar
-            var logradouroAtualizado = Logradouro.Criar(_cep, "Rua Atualizada", "Bairro Atualizado", "Cidade Atualizada", "AT", "Pais atualizado");
+            var logradouroAtualizado = Logradouro.Criar(1, _cep, "Rua Atualizada", "Bairro Atualizado", "Cidade Atualizada", "AT", "Pais atualizado");
 
             // reflexão para definir o ID
 

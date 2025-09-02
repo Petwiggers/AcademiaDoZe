@@ -19,7 +19,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Arquivo arquivo = Arquivo.Criar(new byte[] { 1, 2, 3 });
             Assert.NotNull(aluno);
 
-            Matricula matricula = Matricula.Criar(
+            Matricula matricula = Matricula.Criar(1,
                 aluno, 
                 EMatriculaPlano.anual,
                 new DateOnly(2024, 01, 01),
@@ -44,7 +44,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(matriculaExistente);
 
             // criar nova matrícula com os mesmos dados, editando o que quiser
-            var matriculaAtualizada = Matricula.Criar(
+            var matriculaAtualizada = Matricula.Criar(1,
                 matriculaExistente.AlunoMatricula,
                 EMatriculaPlano.mensal,
                 matriculaExistente.DataInicio.AddDays(30), // Exemplo de atualização

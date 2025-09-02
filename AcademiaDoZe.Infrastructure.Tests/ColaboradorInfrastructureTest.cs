@@ -26,7 +26,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
 
             var cpfExistente = await repoColaboradorCpf.CpfJaExiste(_cpf);
             Assert.False(cpfExistente, "CPF já existe no banco de dados.");
-            var colaborador = Colaborador.Criar(
+            var colaborador = Colaborador.Criar(1,
                     "zé",
                     _cpf,
                     new DateOnly(2010, 10, 09),
@@ -60,8 +60,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(colaboradorExistente);
 
             // criar novo colaborador com os mesmos dados, editando o que quiser
-            var colaboradorAtualizado = Colaborador.Criar(
-
+            var colaboradorAtualizado = Colaborador.Criar(1,
             "zé dos testes 123",
             colaboradorExistente.Cpf,
             colaboradorExistente.DataNascimento,

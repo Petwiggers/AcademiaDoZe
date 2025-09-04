@@ -15,7 +15,7 @@ public class Matricula : Entity
     public DateOnly DataInicio { get; private set; }
     public DateOnly DataFim { get; private set; }
     public string Objetivo { get; private set; }
-    public EMatriculaRestricoes? RestricoesMedicas { get; private set; }
+    public EMatriculaRestricoes RestricoesMedicas { get; private set; }
     public string ObservacoesRestricoes { get; private set; }
     public Arquivo LaudoMedico { get; private set; }
 
@@ -25,7 +25,7 @@ public class Matricula : Entity
         DateOnly dataInicio,
         DateOnly dataFim,
         string objetivo,
-        EMatriculaRestricoes? restricoesMedicas,
+        EMatriculaRestricoes restricoesMedicas,
         string observacoes,
         Arquivo laudoMedico)
     : base(id)
@@ -47,7 +47,7 @@ public class Matricula : Entity
         DateOnly dataInicio,
         DateOnly dataFim,
         string objetivo,
-        EMatriculaRestricoes? restricoesMedicas,
+        EMatriculaRestricoes restricoesMedicas,
         string observacoes,
         Arquivo laudoMedico)
     {

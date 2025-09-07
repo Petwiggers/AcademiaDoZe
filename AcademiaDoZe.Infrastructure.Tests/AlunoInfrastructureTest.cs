@@ -57,7 +57,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(alunoExistente);
 
             // criar novo aluno com os mesmos dados, editando o que quiser
-            var alunoAtualizado = Aluno.Criar(1,
+            var alunoAtualizado = Aluno.Criar(alunoExistente.Id,
                 "zé dos testes 123",
                 alunoExistente.Cpf,
                 alunoExistente.DataNascimento,
@@ -69,11 +69,9 @@ namespace AcademiaDoZe.Infrastructure.Tests
                 alunoExistente.Senha,
                 arquivo
             );
-            // Usar reflexão para definir o ID
 
-            var idProperty = typeof(Entity).GetProperty("Id");
+            Assert.False(alunoAtualizado.Id == 0, $"aluno atualizado Id: {alunoAtualizado.Id}");
 
-            idProperty?.SetValue(alunoAtualizado, alunoExistente.Id);
             // Teste de Atualização
 
             var repoAlunoAtualizar = new AlunoRepository(ConnectionString, DatabaseType);

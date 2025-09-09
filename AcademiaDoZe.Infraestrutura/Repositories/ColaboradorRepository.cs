@@ -159,7 +159,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 var logradouroRepository = new LogradouroRepository(_connectionString, _databaseType);
                 var logradouro = await logradouroRepository.ObterPorId(logradouroId) ?? throw new InvalidOperationException($"Logradouro com ID {logradouroId} não encontrado.");
                 // Cria o objeto Colaborador usando o método de fábrica
-                var colaborador = Colaborador.Criar(logradouroId,
+                var colaborador = Colaborador.Criar(id: Convert.ToInt32(reader["id_colaborador"]),
                 cpf: reader["cpf"].ToString()!,
                 telefone: reader["telefone"].ToString()!,
                 nomeCompleto: reader["nome"].ToString()!,

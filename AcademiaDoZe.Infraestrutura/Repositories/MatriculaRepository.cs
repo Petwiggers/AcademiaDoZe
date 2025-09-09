@@ -17,7 +17,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
-                Matricula matricula = await ObterPorAluno(entity.Id);
+                Matricula matricula = await ObterPorAluno(entity.AlunoMatricula.Id);
 
                 if (matricula != null && matricula.DataFim > DateOnly.FromDateTime(DateTime.Today)) throw new InvalidOperationException("ALUNO_JA_POSSUI_MATRICULA");
 

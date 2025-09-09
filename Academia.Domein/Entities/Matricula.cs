@@ -60,6 +60,7 @@ public class Matricula : Entity
         {
             if(laudoMedico == null) throw new DomainException("LAUDO_OBRIGATORIO");
         }
+        if (restricoesMedicas != null && string.IsNullOrWhiteSpace(observacoes)) { throw new DomainException("OBSERVACOES_OBRIGATORIO"); }
         observacoes = TextoNormalizadoService.LimparEspacos(observacoes);
 
         return new Matricula(id, alunoMatricula, plano, dataInicio, dataFim, objetivo, restricoesMedicas, observacoes, laudoMedico);

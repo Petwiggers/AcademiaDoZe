@@ -1,57 +1,84 @@
-﻿using AcademiaDoZe.Application.DTOs;
+//Peterson Wiggers
+using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Application.Interfaces;
 using AcademiaDoZe.Application.Mappings;
 using AcademiaDoZe.Domain.Repositories;
-using AcademiaDoZe.Application.Security;
+
 
 namespace AcademiaDoZe.Application.Services
 {
     public class MatriculaService : IMatriculaService
     {
-        private readonly Func<IMatriculaService> _repoFactory;
-        public MatriculaService(Func<IMatriculaService> repoFactory)
+
+        private readonly Func<IMatriculaRepository> _repoFactory;
+        public MatriculaService(Func<IMatriculaRepository> repoFactory)
         {
             _repoFactory = repoFactory ?? throw new ArgumentNullException(nameof(repoFactory));
         }
-
-        public Task<MatriculaDTO> AdicionarAsync(MatriculaDTO matriculaDto)
+        public async Task<MatriculaDTO> AdicionarAsync(MatriculaDTO matriculaDto)
         {
-            throw new NotImplementedException();
+            var matriculas = await _repoFactory().ObterAtivas(matriculaDto.AlunoMatricula.Id);
+            if (!matriculas.Any())
+            {
+                var matricula = matriculaDto.ToEntity();
+                await _repoFactory().Adicionar(matricula);
+                return matricula.ToDto();
+            }
+            throw new InvalidOperationException($"Já existe uma matricula ativa para o aluno {matriculaDto.AlunoMatricula.Nome}");
         }
 
-        public Task<MatriculaDTO> AtualizarAsync(MatriculaDTO matriculaDto)
+        public async Task<MatriculaDTO> AtualizarAsync(MatriculaDTO matriculaDto)
         {
-            throw new NotImplementedException();
+            var matriculas = await _repoFactory().ObterAtivas(matriculaDto.AlunoMatricula.Id);
+            if (matriculas.Any())
+            {
+                var matricula = matriculaDto.ToEntity();
+                await _repoFactory().Atualizar(matricula);
+                return matricula.ToDto();
+            }
+            throw new InvalidOperationException($"Não existe uma matricula ativa para o aluno {matriculaDto.AlunoMatricula.Nome}");
         }
 
-        public Task<IEnumerable<MatriculaDTO>> ObterAtivasAsync(int alunoId = 0)
+        public async Task<IEnumerable<MatriculaDTO>> ObterAtivasAsync(int alunoId = 0)
         {
-            throw new NotImplementedException();
+            var matriculas = await _repoFactory().ObterAtivas(alunoId);
+            if (!matriculas.Any()){ throw new InvalidOperationException($"O Aluno não possui nenhuma matrícula !"); }
+            return matriculas.Select(m => m.ToDto());
         }
 
-        public Task<IEnumerable<MatriculaDTO>> ObterPorAlunoIdAsync(int alunoId)
+        public async Task<MatriculaDTO> ObterPorAlunoIdAsync(int alunoId)
         {
-            throw new NotImplementedException();
+            var matricula = await _repoFactory().ObterPorAluno(alunoId);
+            if(matricula == null) { throw new KeyNotFoundException($"Matrícula para o Aluno ID {alunoId} não encontrada."); }
+            return matricula.ToDto();
         }
 
-        public Task<MatriculaDTO> ObterPorIdAsync(int id)
+        public async Task<MatriculaDTO> ObterPorIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var matricula = await _repoFactory().ObterPorId(id);
+            if (matricula == null) { throw new KeyNotFoundException($"Mátricula com o {id} não encontrada."); }
+            return matricula.ToDto();
         }
 
-        public Task<IEnumerable<MatriculaDTO>> ObterTodasAsync()
+        public async Task<IEnumerable<MatriculaDTO>> ObterTodasAsync()
         {
-            throw new NotImplementedException();
+            var matriculas = await _repoFactory().ObterTodos();
+            if (!matriculas.Any()) { throw new KeyNotFoundException($"Nenhuma mátricula cadastrada !"); }
+            return matriculas.Select(m => m.ToDto());
         }
 
-        public Task<IEnumerable<MatriculaDTO>> ObterVencendoEmDiasAsync(int dias)
+        public async Task<IEnumerable<MatriculaDTO>> ObterVencendoEmDiasAsync(int dias)
         {
-            throw new NotImplementedException();
+            var matriculas =  await _repoFactory().ObterVencendoEmDias(dias);
+            if (!matriculas.Any()) { throw new InvalidOperationException($"Nenhuma matrícula vencendo em {dias} dias."); }
+            return matriculas.Select(m => m.ToDto());
         }
 
-        public Task<bool> RemoverAsync(int id)
+        public async Task<bool> RemoverAsync(int id)
         {
-            throw new NotImplementedException();
+            bool resultado = await _repoFactory().Remover(id);
+            if (!resultado) { throw new KeyNotFoundException($"Matrícula ID {id} não encontrada para remoção."); }
+            return resultado;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
         public async Task AdicionarMatricula()
         {
             // com base em logradouroID, acessar logradourorepository e obter o logradouro
-            var repoMatricula= new MatriculaRepository(ConnectionString, DatabaseType);
+            var repoMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
             
             var repoALuno = new AlunoRepository(ConnectionString, DatabaseType);
             Aluno? aluno = await repoALuno.ObterPorCpf("12345678900");
@@ -38,7 +38,7 @@ namespace AcademiaDoZe.Infrastructure.Tests
         [Fact]
         public async Task Matricula_ObterPorAluno_Atualizar()
         {
-            int id_aluno = 1002; // ID do aluno para o qual a matrícula foi criada
+            int id_aluno = 1; // ID do aluno para o qual a matrícula foi criada
             var repoMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
             var matriculaExistente = await repoMatricula.ObterPorAluno(id_aluno);
             Assert.NotNull(matriculaExistente);
@@ -84,7 +84,6 @@ namespace AcademiaDoZe.Infrastructure.Tests
             var repoObterMatricula = new MatriculaRepository(ConnectionString, DatabaseType);
             var matricula = await repoObterMatricula.ObterPorAluno(aluno.Id);
             Assert.NotNull(matricula);
-            Assert.Equal(matricula.AlunoMatricula.Id, 1002);
             // Assert.True(false, matricula.AlunoMatricula.Id.ToString());
 
             var repoRemoverMatricula = new MatriculaRepository(ConnectionString, DatabaseType);

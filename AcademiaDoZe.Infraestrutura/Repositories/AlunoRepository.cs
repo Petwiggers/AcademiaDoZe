@@ -146,12 +146,13 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
+                
                 // Obtém o logradouro de forma assíncrona
                 var logradouroId = Convert.ToInt32(reader["logradouro_id"]);
                 var logradouroRepository = new LogradouroRepository(_connectionString, _databaseType);
                 var logradouro = await logradouroRepository.ObterPorId(logradouroId) ?? throw new InvalidOperationException($"Logradouro com ID {logradouroId} não encontrado.");
                 // Cria o objeto aluno usando o método de fábrica
-                var aluno = Aluno.Criar(logradouroId,
+                var aluno = Aluno.Criar(id: Convert.ToInt32(reader["id_aluno"]),
                 cpf: reader["cpf"].ToString()!,
                 telefone: reader["telefone"].ToString()!,
                 nomeCompleto: reader["nome"].ToString()!,

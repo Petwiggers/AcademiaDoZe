@@ -27,6 +27,7 @@ public abstract class Pessoa : Entity
         string senha,
     Arquivo foto) : base()
     {
+        Id = id;
         Nome = nome;
         Cpf = cpf;
         DataNascimento = dataNascimento;

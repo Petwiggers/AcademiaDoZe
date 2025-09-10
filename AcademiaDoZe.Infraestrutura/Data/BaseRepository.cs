@@ -31,6 +31,7 @@ namespace AcademiaDoZe.Infrastructure.Repositories
                 }
                 else if (_connection.State != ConnectionState.Open)
                 {
+                    if(string.IsNullOrEmpty(_connection.ConnectionString)) { _connection.ConnectionString = _connectionString; }
                     await _connection.OpenAsync();
                 }
                 return _connection;

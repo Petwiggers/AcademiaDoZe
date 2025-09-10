@@ -17,14 +17,14 @@ namespace AcademiaDoZe.Application.Services
         }
         public async Task<MatriculaDTO> AdicionarAsync(MatriculaDTO matriculaDto)
         {
-            var matriculas = await _repoFactory().ObterAtivas(matriculaDto.AlunoMatricula.Id);
-            if (!matriculas.Any())
+            var matricula = await _repoFactory().ObterPorAluno(matriculaDto.AlunoMatricula.Id);
+            if (matricula == null)
             {
-                var matricula = matriculaDto.ToEntity();
-                await _repoFactory().Adicionar(matricula);
-                return matricula.ToDto();
+                var matriculaDomain = matriculaDto.ToEntity();
+                await _repoFactory().Adicionar(matriculaDomain);
+                return matriculaDomain.ToDto();
             }
-            throw new InvalidOperationException($"Já existe uma matricula ativa para o aluno {matriculaDto.AlunoMatricula.Nome}");
+            throw new InvalidOperationException($"Já existe uma matricula ativa para o aluno {matriculaDto.AlunoMatricula.Nome} ID: {matriculaDto.AlunoMatricula.Id}");
         }
 
         public async Task<MatriculaDTO> AtualizarAsync(MatriculaDTO matriculaDto)

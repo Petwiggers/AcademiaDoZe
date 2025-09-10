@@ -89,7 +89,6 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
         {
             try
             {
-
                 await using var connection = await GetOpenConnectionAsync();
                 string query = $"SELECT * FROM {TableName} WHERE data_fim >= {(_databaseType == DatabaseType.SqlServer ? "GETDATE()" :
                 "CURRENT_DATE()")} {(idAluno > 0 ? "AND aluno_id = @id" : "")} ";

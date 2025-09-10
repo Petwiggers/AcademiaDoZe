@@ -1,19 +1,20 @@
-﻿//Peterson Wiggers
+//Peterson Wiggers
 using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Application.Interfaces;
 using AcademiaDoZe.Application.Mappings;
 using AcademiaDoZe.Domain.Repositories;
 
+
 namespace AcademiaDoZe.Application.Services
 {
     public class MatriculaService : IMatriculaService
     {
+
         private readonly Func<IMatriculaRepository> _repoFactory;
         public MatriculaService(Func<IMatriculaRepository> repoFactory)
         {
             _repoFactory = repoFactory ?? throw new ArgumentNullException(nameof(repoFactory));
         }
-
         public async Task<MatriculaDTO> AdicionarAsync(MatriculaDTO matriculaDto)
         {
             var matriculas = await _repoFactory().ObterAtivas(matriculaDto.AlunoMatricula.Id);

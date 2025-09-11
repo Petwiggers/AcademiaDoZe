@@ -79,7 +79,7 @@ namespace AcademiaDoZe.Application.Tests
                 // Act - Atualizar
                 var atualizar = new MatriculaDTO
                 {
-                    Id = 1,
+                    Id = criado.Id,
                     AlunoMatricula = new AlunoDTO
                     {
                         Nome = "Aluno Atualizado",
@@ -93,11 +93,13 @@ namespace AcademiaDoZe.Application.Tests
                         Senha = "Senha@1",
                         Foto = foto
                     },
+                    ObservacoesRestricoes = "Sem observações",
                     Objetivo = "Objetivo Atualizado",
                     Plano = EAppMatriculaPlano.Semestral,
                     DataInicio = DateOnly.FromDateTime(DateTime.Now.AddMonths(-1)),
                     DataFim = DateOnly.FromDateTime(DateTime.Now.AddMonths(11))
                 };
+                
                 var atualizado = await matriculaService.AtualizarAsync(atualizar);
                 // Assert - atualizar
                 Assert.NotNull(atualizado);
@@ -107,8 +109,13 @@ namespace AcademiaDoZe.Application.Tests
                 var removido = await matriculaService.RemoverAsync(criado.Id);
                 Assert.True(removido);
                 // Act - Conferir remoção
-                var aposRemocao = await matriculaService.ObterPorIdAsync(criado.Id);
-                Assert.Null(aposRemocao);
+                await Assert.ThrowsAsync<KeyNotFoundException>(async () =>
+                {
+                    var aposRemocao = await matriculaService.ObterPorIdAsync(criado.Id);
+                    Assert.Null(aposRemocao);
+                });
+                
+                
             }
             finally
             {

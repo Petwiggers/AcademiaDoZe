@@ -62,9 +62,9 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 + "objetivo = @Objetivo, "
                 + "restricao_medica = @Restricao_medica, "
                 + "obs_restricao= @Obs_restricao "
-                + $"WHERE {IdTableName} = @Aluno_id";
+                + $"WHERE {IdTableName} = @Matricula_id";
                 await using var command = DbProvider.CreateCommand(query, connection);
-                command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Matricula_id", entity.Id, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Plano", (int)entity.Plano, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_inicio", entity.DataInicio, DbType.Date, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Data_fim", entity.DataFim, DbType.Date, _databaseType));

@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CommunityToolkit.Mvvm.Input;
 namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
 {
-    internal class LogradouroViewModel
+    public partial class LogradouroViewModel : BaseViewModel
     {
+        // inicialmente só estamos incluindo o comando de cancelar
+
+        [RelayCommand]
+        private async Task CancelAsync()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 }

@@ -11,7 +11,11 @@ Title="{Binding Title}">
 
             <StackLayout Spacing="10" Margin="0,0,0,20">
 
-                <Image Source="academiadoze.png" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="200" WidthRequest="200"/>
+                <Image HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Start">
+                    <Image.Source>
+                        <AppThemeBinding Light="academiadoze_light.png" Dark="academiadoze_dark.png" />
+                    </Image.Source>
+                </Image>
                 <Label Text="Academia do Zé" Style="{StaticResource Headline}"/>
                 <Label Text="Sistema de Gerenciamento" Style="{StaticResource SubHeadline}"/>
             </StackLayout>

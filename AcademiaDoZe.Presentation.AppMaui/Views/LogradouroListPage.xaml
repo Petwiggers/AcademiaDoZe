@@ -75,6 +75,7 @@ Title="{Binding Title}">
                 </Button.Shadow>
             </Button>
         </Grid>
+        <!-- Loading Indicator -->
         <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
     </Grid>
 </ContentPage>

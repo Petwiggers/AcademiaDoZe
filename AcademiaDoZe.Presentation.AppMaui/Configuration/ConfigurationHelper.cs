@@ -14,7 +14,8 @@ namespace AcademiaDoZe.Presentation.AppMaui.Configuration
             const string dbComplemento = "TrustServerCertificate=True;Encrypt=True;";
             // se for necessário indicar a porta, incluir junto em dbComplemento
             // Configurações de conexão
-            const string connectionString = $"Server={dbServer};Database={dbDatabase};User Id={dbUser};Password={dbPassword};{dbComplemento}"; const EAppDatabaseType databaseType = EAppDatabaseType.SqlServer;
+            const string connectionString = $"Server={dbServer};Database={dbDatabase};User Id={dbUser};Password={dbPassword};{dbComplemento}"; 
+            const EAppDatabaseType databaseType = EAppDatabaseType.SqlServer;
             // Configura a fábrica de repositórios com a string de conexão e tipo de banco
             services.AddSingleton(new RepositoryConfig
             {

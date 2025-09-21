@@ -14,7 +14,15 @@
                     <Label Text="CEP"/>
                     <Grid ColumnDefinitions="*,Auto">
                         <Entry Grid.Column="0" Text="{Binding Logradouro.Cep}" Placeholder="00000-000" Keyboard="Numeric" Margin="0,0,10,0"/>
-                        <Button Grid.Column="1" Text="Buscar CEP" Command="{Binding SearchByCepCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="40" Padding="15,0"/>
+                        <Button Grid.Column="1" Command="{Binding SearchByCepCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="40" Padding="15,0" FontSize="14" WidthRequest="80">
+                            <Button.ImageSource>
+                                <FontImageSource 
+                                    FontFamily="MaterialIcons" 
+                                    Glyph="&#xe8b6;"
+                                    Size="25"
+                                    Color="{AppThemeBinding Light={StaticResource White},Dark={StaticResource MidnightBlue}}" />
+                            </Button.ImageSource>
+                        </Button>
                     </Grid>
                 </StackLayout>
             </Border>
@@ -51,8 +59,24 @@
             </Border>
             <!-- Botões de Ação -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
-                <Button Grid.Column="0" Text="Cancelar" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50"/>
-                <Button Grid.Column="1" Text="Salvar" Command="{Binding SaveLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50"/>
+                <Button Grid.Column="0" Text="Cancelar" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
+                    <Button.ImageSource>
+                        <FontImageSource 
+                            FontFamily="MaterialIcons" 
+                            Glyph="&#xe5cd;"
+                            Size="25"
+                            Color="Red" />
+                    </Button.ImageSource>
+                </Button>
+                <Button Grid.Column="1" Text="Salvar" Command="{Binding SaveLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
+                    <Button.ImageSource>
+                        <FontImageSource 
+                                FontFamily="MaterialIcons" 
+                                Glyph="&#xe92f;"
+                                Size="25"
+                                Color="{AppThemeBinding Light={StaticResource White},Dark={StaticResource MidnightBlue}}" />
+                    </Button.ImageSource>
+                </Button>
             </Grid>
             <!-- Loading Indicator -->
             <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>

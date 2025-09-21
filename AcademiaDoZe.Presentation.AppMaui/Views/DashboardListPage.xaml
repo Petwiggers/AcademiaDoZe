@@ -13,7 +13,7 @@ Title="{Binding Title}">
 
                 <Image HeightRequest="300" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="Start">
                     <Image.Source>
-                        <AppThemeBinding Light="academiadoze_light2.png" Dark="academiadoze_dark.png" />
+                        <AppThemeBinding Light="academiadoze_light.png" Dark="academiadoze_dark.png" />
                     </Image.Source>
                 </Image>
                 <Label Text="Academia do Zé" Style="{StaticResource Headline}"/>

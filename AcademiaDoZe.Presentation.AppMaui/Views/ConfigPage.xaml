@@ -23,8 +23,24 @@
                         </Picker>
                     </StackLayout>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45"/>
-                        <Button Grid.Column="1" Text="Salvar Tema" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45"/>
+                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
+                            <Button.ImageSource>
+                                <FontImageSource 
+                                FontFamily="MaterialIcons" 
+                                Glyph="&#xe5cd;"
+                                Size="25"
+                                Color="Red" />
+                            </Button.ImageSource>
+                        </Button>
+                        <Button Grid.Column="1" Text="Salvar Tema" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                            <Button.ImageSource>
+                                <FontImageSource 
+                                FontFamily="MaterialIcons" 
+                                Glyph="&#xe92f;"
+                                Size="25"
+                                Color="{AppThemeBinding Light={StaticResource White},Dark={StaticResource MidnightBlue}}" />
+                            </Button.ImageSource>
+                        </Button>
                     </Grid>
 
                 </StackLayout>
@@ -65,8 +81,24 @@
                         <Entry x:Name="ComplementoEntry" Placeholder="Digite o complemento..."/>
                     </StackLayout>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
-                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45"/>
-                        <Button Grid.Column="1" Text="Salvar BD" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45"/>
+                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
+                            <Button.ImageSource>
+                                <FontImageSource 
+                                FontFamily="MaterialIcons" 
+                                Glyph="&#xe5cd;"
+                                Size="25"
+                                Color="Red" />
+                            </Button.ImageSource>
+                        </Button>
+                        <Button Grid.Column="1" Text="Salvar BD" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                            <Button.ImageSource>
+                                <FontImageSource 
+                                FontFamily="MaterialIcons" 
+                                Glyph="&#xe92f;"
+                                Size="25"
+                                Color="{AppThemeBinding Light={StaticResource White},Dark={StaticResource MidnightBlue}}" />
+                            </Button.ImageSource>
+                        </Button>
                     </Grid>
                 </StackLayout>
             </Border>

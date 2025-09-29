@@ -16,7 +16,7 @@ Title="{Binding Title}">
                         <AppThemeBinding Light="academiadoze_light.png" Dark="academiadoze_dark.png" />
                     </Image.Source>
                 </Image>
-                <Label Text="Academia do Zé" Style="{StaticResource Headline}"/>
+                <Label Text="Academia do Pet" Style="{StaticResource Headline}"/>
                 <Label Text="Sistema de Gerenciamento" Style="{StaticResource SubHeadline}"/>
             </StackLayout>
             <!-- Cards Container -->

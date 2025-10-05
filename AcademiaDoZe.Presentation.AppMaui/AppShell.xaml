@@ -40,6 +40,16 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:ConfigPage}" Route="configuracoes"/>
     </FlyoutItem>
+    <FlyoutItem Title="Colaboradores">
+        <FlyoutItem.Icon>
+            <FontImageSource 
+                FontFamily="MaterialIcons" 
+                Glyph="&#xe8b8;"
+                Size="24"
+                Color="{AppThemeBinding Light={StaticResource MidnightBlue},Dark={StaticResource White}}" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate views:ColaboradorListPage}" Route="colaboradores" />
+    </FlyoutItem>
     <!--
      <TabBar>
      <ShellContent Title="Dashboard" ContentTemplate="{DataTemplate views:DashboardListPage}" Route="dashboard" /> <ShellContent Title="Logradouros" ContentTemplate="{DataTemplate views:LogradouroListPage}" Route="logradouros" /> </TabBar>

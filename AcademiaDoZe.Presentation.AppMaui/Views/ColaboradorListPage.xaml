@@ -46,7 +46,7 @@
                                     <OnIdiom.TV>140</OnIdiom.TV>
                                     <OnIdiom.Default>110</OnIdiom.Default>
                                 </OnIdiom>
-                            </Image.WidthRequest> >
+                            </Image.WidthRequest> 
                         </Image>
                         <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}" FontAttributes="Bold" Margin="0,0,0,5"/>
                         <Label Grid.Row="1" Grid.Column="0" Text="{Binding Cpf}" Margin="0,0,0,5"/>

@@ -44,7 +44,7 @@
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 
-                Glyph="&#xe8b8;"
+                Glyph="&#xf233;"
                 Size="24"
                 Color="{AppThemeBinding Light={StaticResource MidnightBlue},Dark={StaticResource White}}" />
         </FlyoutItem.Icon>

@@ -72,7 +72,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
         }
 
         [RelayCommand]
-        private async Task SearchALunosAsync()
+        private async Task SearchAlunosAsync()
         {
             if (IsBusy)
                 return;

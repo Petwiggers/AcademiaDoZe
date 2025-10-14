@@ -3,7 +3,7 @@ using AcademiaDoZe.Presentation.AppMaui.ViewModels;
 namespace AcademiaDoZe.Presentation.AppMaui.Views;
 public partial class AlunoListPage : ContentPage
 {
-    public AlunoListPage(ColaboradorListViewModel viewModel)
+    public AlunoListPage(AlunoListViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

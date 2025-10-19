@@ -52,6 +52,12 @@ namespace AcademiaDoZe.Application.Services
             if(matricula == null) { throw new KeyNotFoundException($"Matrícula para o Aluno ID {alunoId} não encontrada."); }
             return matricula.ToDto();
         }
+        public async Task<MatriculaDTO> ObterPorAlunoCpfAsync(string cpf)
+        {
+            var matricula = await _repoFactory().ObterPorAlunoCpf(cpf);
+            if (matricula == null) { throw new KeyNotFoundException($"Matrícula para o Aluno CPf {cpf} não encontrada."); }
+            return matricula.ToDto();
+        }
 
         public async Task<MatriculaDTO> ObterPorIdAsync(int id)
         {

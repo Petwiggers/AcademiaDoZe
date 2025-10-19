@@ -6,6 +6,7 @@ namespace AcademiaDoZe.Domain.Repositories
         // Métodos específicos do domínio
 
         Task<Matricula> ObterPorAluno(int alunoId);
+        Task<Matricula> ObterPorAlunoCpf(string cpf);
         Task<IEnumerable<Matricula>> ObterAtivas(int alunoId = 0);
         Task<IEnumerable<Matricula>> ObterVencendoEmDias(int dias);
     }

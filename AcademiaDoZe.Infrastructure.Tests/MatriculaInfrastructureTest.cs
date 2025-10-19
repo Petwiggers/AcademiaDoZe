@@ -103,5 +103,13 @@ namespace AcademiaDoZe.Infrastructure.Tests
             Assert.NotNull(matriculas);
 
         }
+
+        [Fact]
+        public async Task Matricula_Obter_Aluno_Por_Cpf()
+        {
+            var repository = new MatriculaRepository(ConnectionString, DatabaseType);
+            var matriculas = await repository.ObterPorAlunoCpf("123");
+            Assert.NotNull(matriculas);
+        }
     }
 }

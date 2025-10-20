@@ -15,7 +15,7 @@ public class Matricula : Entity
     public DateOnly DataInicio { get; private set; }
     public DateOnly DataFim { get; private set; }
     public string Objetivo { get; private set; }
-    public EMatriculaRestricoes RestricoesMedicas { get; private set; }
+    public EMatriculaRestricoes ?RestricoesMedicas { get; private set; }
     public string ObservacoesRestricoes { get; private set; }
     public Arquivo LaudoMedico { get; private set; }
 
@@ -25,7 +25,7 @@ public class Matricula : Entity
         DateOnly dataInicio,
         DateOnly dataFim,
         string objetivo,
-        EMatriculaRestricoes restricoesMedicas,
+        EMatriculaRestricoes ?restricoesMedicas,
         string observacoes,
         Arquivo laudoMedico)
     : base(id)
@@ -47,7 +47,7 @@ public class Matricula : Entity
         DateOnly dataInicio,
         DateOnly dataFim,
         string objetivo,
-        EMatriculaRestricoes restricoesMedicas,
+        EMatriculaRestricoes ?restricoesMedicas,
         string observacoes,
         Arquivo laudoMedico)
     {
@@ -60,7 +60,7 @@ public class Matricula : Entity
         {
             if(laudoMedico == null) throw new DomainException("LAUDO_OBRIGATORIO");
         }
-        if (restricoesMedicas != null && string.IsNullOrWhiteSpace(observacoes)) { throw new DomainException($"OBSERVACOES_OBRIGATORIO Oberservações"); }
+        if (restricoesMedicas > 0 && restricoesMedicas != null && string.IsNullOrWhiteSpace(observacoes)) { throw new DomainException($"OBSERVACOES_OBRIGATORIO Oberservações"); }
         observacoes = TextoNormalizadoService.LimparEspacos(observacoes);
 
         return new Matricula(id, alunoMatricula, plano, dataInicio, dataFim, objetivo, restricoesMedicas, observacoes, laudoMedico);

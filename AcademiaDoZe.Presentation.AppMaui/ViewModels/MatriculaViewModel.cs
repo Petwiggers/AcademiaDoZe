@@ -186,14 +186,14 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
         {
             try
             {
-                string escolha = await Shell.Current.DisplayActionSheet("Origem da Imagem", "Cancelar", null, "Galeria", "Câmera");
+                string escolha = await Shell.Current.DisplayActionSheet("Origem do arquivo", "Cancelar", null, "Galeria", "Câmera");
                 FileResult? result = null;
                 if (escolha == "Galeria")
 
                 {
                     result = await FilePicker.Default.PickAsync(new PickOptions
                     {
-                        PickerTitle = "Selecione uma imagem",
+                        PickerTitle = "Selecione um arquivo",
                         FileTypes = FilePickerFileType.Images
                     });
                 }

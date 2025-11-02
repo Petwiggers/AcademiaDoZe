@@ -65,7 +65,6 @@ Title="{Binding Title}">
                 <!-- Card Matrículas -->
 
                 <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}" Margin="15,10">
-
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateToMatriculasCommand}"/>
                     </Border.GestureRecognizers>

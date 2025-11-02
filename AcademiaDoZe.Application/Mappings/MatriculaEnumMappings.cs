@@ -12,11 +12,11 @@ namespace AcademiaDoZe.Application.Mappings
         {
             return (EAppMatriculaPlano)domainPlano;
         }
-        public static EMatriculaRestricoes ToDomain(this EAppMatriculaRestricoes appRestricoes)
+        public static EMatriculaRestricoes ToDomain(this EAppMatriculaRestricoes? appRestricoes)
         {
             return (EMatriculaRestricoes)appRestricoes;
         }
-        public static EAppMatriculaRestricoes ToApp(this EMatriculaRestricoes domainRestricoes)
+        public static EAppMatriculaRestricoes ToApp(this EMatriculaRestricoes? domainRestricoes)
         {
             return (EAppMatriculaRestricoes)domainRestricoes;
         }

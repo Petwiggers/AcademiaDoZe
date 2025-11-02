@@ -143,14 +143,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@CPF", cpf+"%", DbType.String, _databaseType));
                 await using var reader = await command.ExecuteReaderAsync();
-
-                while (reader.Read())
-                {
-                    var matricula = await MapAsync(reader);
-                    return matricula;
-                }
-
-                return null;
+                return await reader.ReadAsync() ? await MapAsync(reader) : null;
 
             }
             catch (DbException ex)

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
 {
-    public class MatriculaListViewModel : BaseViewModel
+    public partial class MatriculaListViewModel : BaseViewModel
     {
         public ObservableCollection<string> FilterTypes { get; } = new() { "Id", "CPF", "Dias para vencimento" };
         private readonly IMatriculaService _matriculaService;
@@ -191,7 +191,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
         }
 
         [RelayCommand]
-        private async Task DeleteColaboradorAsync(MatriculaDTO matricula)
+        private async Task DeleteMatriculaAsync(MatriculaDTO matricula)
         {
             if (matricula == null)
                 return;

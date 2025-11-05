@@ -31,7 +31,7 @@
             <!-- Dados Pessoais -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="{Binding Aluno.Id, StringFormat='Colaborador ID: {0}'}" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Aluno.Id, StringFormat='Aluno ID: {0}'}" Style="{StaticResource SubHeadline}"/>
                     <StackLayout Spacing="5">
                         <Label Text="Nome"/>
                         <Entry Text="{Binding Aluno.Nome}" Placeholder="Digite o nome..."/>

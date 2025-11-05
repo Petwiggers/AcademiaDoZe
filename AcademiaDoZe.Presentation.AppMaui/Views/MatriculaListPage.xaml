@@ -111,7 +111,6 @@
                     <!-- utiliza o DataTemplate criado acima -->
 
                     <CollectionView.ItemTemplate>
-
                         <StaticResource Key="MatriculaItemTemplate" />
                     </CollectionView.ItemTemplate>
                 </CollectionView>

@@ -57,7 +57,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             else
             {
                 IsEditMode = false;
-                Title = "Novo Colaborador";
+                Title = "Novo Aluno";
             }
         }
         [RelayCommand]

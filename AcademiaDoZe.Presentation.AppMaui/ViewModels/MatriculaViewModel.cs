@@ -12,9 +12,12 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
     {
         private readonly IMatriculaService _matriculaService;
         private readonly IAlunoService _alunoService;
+        private string nome = "Peterson Wiggers";
+        public string Nome { get => nome; set => SetProperty(ref nome, value); }
+        public IEnumerable<EAppMatriculaPlano> MatriculaPlanos { get; } = Enum.GetValues(typeof(EAppMatriculaPlano)).Cast<EAppMatriculaPlano>();
         private MatriculaDTO _matricula = new()
         {
-        AlunoMatricula = new AlunoDTO
+            AlunoMatricula = new AlunoDTO
             {
                 Nome = string.Empty,
                 Cpf = string.Empty,
@@ -53,6 +56,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             _matriculaService = matriculaService;
             _alunoService = alunoService;
             Title = "Detalhes da Matrícula";
+            InicializaTipoRestricoes();
         }
         [RelayCommand]
         private async Task CancelAsync()
@@ -167,8 +171,12 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                     {
                         Matricula.AlunoMatricula = alunoData;
                         await Shell.Current.DisplayAlert("Aviso", "Aluno encontrado! Preencha os dados da matrícula.", "OK");
+                        OnPropertyChanged(nameof(Matricula));
                     }
-                    await Shell.Current.DisplayAlert("Aviso", "CPF não encontrado.", "OK");
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Aviso", "CPF não encontrado.", "OK");
+                    }
                 }
             }
             catch (Exception ex)

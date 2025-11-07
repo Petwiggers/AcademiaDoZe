@@ -65,7 +65,7 @@
                         <Label Text="Selecione as restrições médicas:" 
                                 Style="{StaticResource SubHeadline}" />
 
-                         <!--Lista de CheckBoxes--> 
+                        <!--Lista de CheckBoxes-->
                         <CollectionView ItemsSource="{Binding OpcoesTipo}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="vm:TipoMatriculaOption">
@@ -75,62 +75,25 @@
                                             VerticalOptions="Center" />
 
                                         <CheckBox Grid.Column="1" 
-                                        IsChecked="{Binding IsSelecionado}"
-                                        VerticalOptions="Center"
-                                        CheckedChanged="OnTipoSelecionadoChanged" />
+                                        IsChecked="{Binding IsSelecionado, Mode=TwoWay}"
+                                        VerticalOptions="Center"/>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                         <!--Mostrar seleção atual--> 
-                        <Border Style="{StaticResource CardBorder}" Margin="0,20">
-                            <VerticalStackLayout Padding="10">
-                                <Label Text="Tipos selecionados:" FontAttributes="Bold" />
-                                <Label Text="{Binding TiposRestricoes, Converter={StaticResource EnumDisplay}}" />
-                            </VerticalStackLayout>
-                        </Border>
                     </VerticalStackLayout>
-                    <!--<StackLayout Spacing="5">
+                    <StackLayout Spacing="5">
                         <Label Text="Foto"/>
-                        <Image Source="{Binding Matricula., Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120"/>
+                        <Image Source="{Binding Matricula.LaudoMedico, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120"/>
                         <Button Text="Selecionar Imagem" Command="{Binding SelecionarFotoCommand}" Style="{StaticResource ButtonPrimary}" >
                             <Button.ImageSource>
                                 <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe226;" />
                             </Button.ImageSource>
                         </Button>
-                    </StackLayout>-->
+                    </StackLayout>
                 </StackLayout>
             </Border>
-            <!-- Dados de Trabalho -->
-
-            <!--<Border Style="{StaticResource CardBorder}" Margin="15,10">
-
-                <StackLayout Spacing="15">
-                    <Label Text="Dados de Trabalho" Style="{StaticResource SubHeadline}"/>
-                    <StackLayout Spacing="5">
-                        <Label Text="Data de Admissão"/>
-                        <DatePicker Date="{Binding Colaborador.DataAdmissao, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}"/>
-                    </StackLayout>
-                    <StackLayout Spacing="5">
-                        <Label Text="Tipo"/>
-                        <Picker ItemsSource="{Binding ColaboradorTipos}" SelectedItem="{Binding Colaborador.Tipo}">
-                            <Picker.ItemDisplayBinding>
-                                <Binding Converter="{StaticResource EnumDisplay}" />
-                            </Picker.ItemDisplayBinding>
-                        </Picker>
-                    </StackLayout>
-                    <StackLayout Spacing="5">
-                        <Label Text="Vínculo"/>
-                        <Picker ItemsSource="{Binding ColaboradorVinculos}" SelectedItem="{Binding Colaborador.Vinculo}">
-                            <Picker.ItemDisplayBinding>
-                                <Binding Converter="{StaticResource EnumDisplay}" />
-                            </Picker.ItemDisplayBinding>
-                        </Picker>
-                    </StackLayout>
-                </StackLayout>
-            </Border>-->
-            <!-- Botões de Ação -->
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
 

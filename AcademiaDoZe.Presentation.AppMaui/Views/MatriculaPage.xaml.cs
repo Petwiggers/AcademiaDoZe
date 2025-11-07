@@ -17,5 +17,4 @@ public partial class MatriculaPage : ContentPage
             await viewModel.InitializeAsync();
         }
     }
-
 }

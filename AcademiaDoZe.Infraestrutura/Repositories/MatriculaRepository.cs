@@ -91,8 +91,9 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
             {
                 await using var connection = await GetOpenConnectionAsync();
                 string query = $"SELECT * FROM {TableName} WHERE data_fim >= {(_databaseType == DatabaseType.SqlServer ? "GETDATE()" :
-                "CURRENT_DATE()")} {(idAluno > 0 ? "AND aluno_id = @id" : "")} ";
+                "CURRENT_DATE()")} {(idAluno > 0 ? "AND aluno_id = @Id" : "")} ";
                 await using var command = DbProvider.CreateCommand(query, connection);
+                command.Parameters.Add(DbProvider.CreateParameter("@Id", idAluno, DbType.String, _databaseType));
                 await using var reader = await command.ExecuteReaderAsync();
                 var matriculas = new List<Matricula>();
                 while (reader.Read())

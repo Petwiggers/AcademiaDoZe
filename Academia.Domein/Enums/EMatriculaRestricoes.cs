@@ -1,24 +1,21 @@
 ﻿//Peterson_Wiggers
 namespace AcademiaDoZe.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+[Flags]
 public enum EMatriculaRestricoes
 {
     [Display(Name = "Diabetes")]
-    diabetes = 0,
-
+    Diabetes = 1,
     [Display(Name = "Pressão Alta")]
-    pressaoAlta = 1,
-
+    PressaoAlta = 2,
     [Display(Name = "Labirintite")]
-    labirintite = 2,
-
+    Labirintite = 4,
     [Display(Name = "Alergias")]
-    alergias = 3,
-
+    Alergias = 8,
     [Display(Name = "Problemas Respiratórios")]
-    problemasRespiratorios = 4,
-
+    ProblemasRespiratorios = 16,
     [Display(Name = "Remédio Contínuo")]
     RemedioContinuo = 32
 }
+
 

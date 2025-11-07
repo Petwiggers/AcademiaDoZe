@@ -10,36 +10,35 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
     [QueryProperty(nameof(MatriculaId), "Id")]
     public partial class MatriculaViewModel : BaseViewModel
     {
-        
-        private EAppMatriculaRestricoes _tiposRestricoesSelecionadas;
-        public EAppMatriculaRestricoes TiposRestricoes
-        {
-            get => _tiposRestricoesSelecionadas;
-            set => SetProperty(ref _tiposRestricoesSelecionadas, value);
-        }
 
         // Lista de opções disponíveis para o CheckBox
-        public List<TipoMatriculaOption> OpcoesTipo { get; } = new();
+
+        private List<TipoMatriculaOption> _OpcoesTipo;
+        public List<TipoMatriculaOption> OpcoesTipo
+        {
+            get => _OpcoesTipo;
+            set => SetProperty(ref _OpcoesTipo, value);
+        }
 
         public void InicializaTipoRestricoes()
         {
-            // Preenche as opções
-            var valores = Enum.GetValues(typeof(EAppMatriculaRestricoes))
-                                .Cast<EAppMatriculaRestricoes>();
-
-            foreach (var valor in valores)
+            OpcoesTipo = new List<TipoMatriculaOption>();
+            foreach (EAppMatriculaRestricoes p in Enum.GetValues(typeof(EAppMatriculaRestricoes)))
             {
-                OpcoesTipo.Add(new TipoMatriculaOption
+                bool selecionado = false;
+                if (Matricula.RestricoesMedicas.GetValueOrDefault().HasFlag(p))
                 {
-                    Valor = valor,
-                    Nome = valor.GetDisplayName(),
-                    IsSelecionado = false
+                    selecionado = true;
+                }
+
+                OpcoesTipo.Add(new TipoMatriculaOption()
+                {
+                    Nome = p.GetDisplayName(),
+                    Valor = p,
+                    IsSelecionado = selecionado
                 });
             }
         }
-
-        
-
     }
     // Classe auxiliar para binding
     public class TipoMatriculaOption

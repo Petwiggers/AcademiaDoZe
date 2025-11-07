@@ -4,8 +4,6 @@ namespace AcademiaDoZe.Application.Enums
     [Flags]
     public enum EAppMatriculaRestricoes
     {
-        [Display(Name = "Nenhuma Restrição")]
-        None = 0,
         [Display(Name = "Diabetes")]
         Diabetes = 1,
         [Display(Name = "Pressão Alta")]

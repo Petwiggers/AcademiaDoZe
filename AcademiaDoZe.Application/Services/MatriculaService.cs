@@ -37,7 +37,7 @@ namespace AcademiaDoZe.Application.Services
                 await _repoFactory().Atualizar(matricula);
                 return matricula.ToDto();
             }
-            return null;
+            throw new Exception("Nenhuma matricula ativa encontrada !");
         }
 
         public async Task<IEnumerable<MatriculaDTO>> ObterAtivasAsync(int alunoId = 0)

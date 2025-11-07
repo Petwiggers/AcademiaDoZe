@@ -56,7 +56,6 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             _matriculaService = matriculaService;
             _alunoService = alunoService;
             Title = "Detalhes da Matrícula";
-            InicializaTipoRestricoes();
         }
         [RelayCommand]
         private async Task CancelAsync()
@@ -76,6 +75,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 IsEditMode = false;
                 Title = "Nova Matricula";
             }
+            InicializaTipoRestricoes();
         }
         [RelayCommand]
         public async Task LoadMatriculaAsync()
@@ -88,10 +88,10 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 var matriculaData = await _matriculaService.ObterPorIdAsync(MatriculaId);
 
                 if (matriculaData != null)
-
                 {
                     Matricula = matriculaData;
                 }
+
             }
             catch (Exception ex)
             {
@@ -139,7 +139,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Erro", $"Erro ao salvar colaborador: {ex.Message}", "OK");
+                await Shell.Current.DisplayAlert("Erro", $"Erro ao salvar matricula: {ex.Message}", "OK");
             }
             finally
             {

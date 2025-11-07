@@ -3,6 +3,7 @@ using AcademiaDoZe.Application.DTOs;
 using AcademiaDoZe.Application.Enums;
 using AcademiaDoZe.Application.Interfaces;
 using AcademiaDoZe.Application.Services;
+using Azure;
 using CommunityToolkit.Mvvm.Input;
 using ZstdSharp.Unsafe;
 namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
@@ -38,6 +39,18 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                     IsSelecionado = selecionado
                 });
             }
+        }
+
+        public void AtualizarRestricoesMatricula()
+        {
+            EAppMatriculaRestricoes restricoes = default(EAppMatriculaRestricoes);
+            foreach(TipoMatriculaOption x in OpcoesTipo)
+            {
+                if(x.IsSelecionado)
+                    restricoes |= x.Valor;
+            }
+
+            Matricula.RestricoesMedicas = restricoes;
         }
     }
     // Classe auxiliar para binding

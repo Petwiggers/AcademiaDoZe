@@ -42,8 +42,8 @@
                         </Image>-->
                         <Label Grid.Row="0" Grid.Column="0"  Text="{Binding AlunoMatricula.Nome}" FontAttributes="Bold" Margin="0,0,0,5"/>
                         <Label Grid.Row="1" Grid.Column="0"  Text="{Binding Plano, Converter={StaticResource EnumDisplay}}" Margin="0,0,0,5"/>
-                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding DataInicio, Converter={StaticResource ConverterData}}" Margin="0,0,0,5"/> 
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding DataFim, Converter={StaticResource ConverterData}}" Margin="0,0,0,5"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding DataInicio}" Margin="0,0,0,5"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding DataFim}" Margin="0,0,0,5"/>
                         <Label Grid.Row="4" Grid.Column="0" Text="{Binding AlunoMatricula.Nome}" Margin="0,0,0,5"/>
                         <Label Grid.Row="5" Grid.Column="0" Text="{Binding AlunoMatricula.Cpf}" Margin="0,0,0,5"/>
                         <Label Grid.Row="6" Grid.Column="0" Text="{Binding Objetivo}" Margin="0,0,0,5"/>

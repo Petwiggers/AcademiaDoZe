@@ -121,6 +121,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                     return;
                 }
                 Matricula.AlunoMatricula = alunoData;
+                AtualizarRestricoesMatricula();
                 if (IsEditMode)
                 {
                     await _matriculaService.AtualizarAsync(Matricula);

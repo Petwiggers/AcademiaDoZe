@@ -57,10 +57,6 @@
                         <Label Text="Objetivo"/>
                         <Entry Text="{Binding Matricula.Objetivo}" Placeholder="Digite seu objetivo" />
                     </StackLayout>
-                    <StackLayout Spacing="5">
-                        <Label Text="Observações restrições"/>
-                        <Entry Text="{Binding Matricula.ObservacoesRestricoes}" Placeholder="Digite as observações das restrições" />
-                    </StackLayout>
                     <VerticalStackLayout Padding="20">
                         <Label Text="Selecione as restrições médicas:" 
                                 Style="{StaticResource SubHeadline}" />
@@ -81,8 +77,11 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-
                     </VerticalStackLayout>
+                    <StackLayout Spacing="5">
+                        <Label Text="Observações restrições"/>
+                        <Entry Text="{Binding Matricula.ObservacoesRestricoes}" Placeholder="Digite as observações das restrições" />
+                    </StackLayout>
                     <StackLayout Spacing="5">
                         <Label Text="Foto"/>
                         <Image Source="{Binding Matricula.LaudoMedico, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120"/>

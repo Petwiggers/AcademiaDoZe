@@ -12,8 +12,6 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
     {
         private readonly IMatriculaService _matriculaService;
         private readonly IAlunoService _alunoService;
-        private string nome = "Peterson Wiggers";
-        public string Nome { get => nome; set => SetProperty(ref nome, value); }
         public IEnumerable<EAppMatriculaPlano> MatriculaPlanos { get; } = Enum.GetValues(typeof(EAppMatriculaPlano)).Cast<EAppMatriculaPlano>();
         private MatriculaDTO _matricula = new()
         {
@@ -224,7 +222,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                     using var ms = new MemoryStream();
                     await stream.CopyToAsync(ms);
                     Matricula.LaudoMedico = new ArquivoDTO { Conteudo = ms.ToArray() };
-                    OnPropertyChanged(nameof(Colaborador));
+                    OnPropertyChanged(nameof(Matricula));
                 }
             }
             catch (Exception ex)

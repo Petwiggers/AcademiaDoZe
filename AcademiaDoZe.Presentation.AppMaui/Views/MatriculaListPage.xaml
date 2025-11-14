@@ -15,9 +15,8 @@
         <DataTemplate x:Key="MatriculaItemTemplate" x:DataType="dto:MatriculaDTO">
             <Grid Padding="1" Margin="5">
                 <Border Style="{StaticResource CardBorder}" Margin="10">
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto,Auto">
-                        <!--<Image Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="11" Source="{Binding Foto, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" Margin="0,0,10,0" >
-                            --><!-- HeightRequest conforme OnIdiom - utilizando objeto filho --><!--
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto,Auto">
+                        <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="11" Source="{Binding LaudoMedico, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" Margin="0,0,10,0" >
                             <Image.HeightRequest>
                                 <OnIdiom x:TypeArguments="x:Double">
                                     <OnIdiom.Phone>110</OnIdiom.Phone>
@@ -27,7 +26,6 @@
                                     <OnIdiom.Default>110</OnIdiom.Default>
                                 </OnIdiom>
                             </Image.HeightRequest>
-                            --><!-- WidthRequest conforme OnIdiom - utilizando objeto filho --><!--
 
                             <Image.WidthRequest>
 
@@ -39,7 +37,7 @@
                                     <OnIdiom.Default>110</OnIdiom.Default>
                                 </OnIdiom>
                             </Image.WidthRequest>
-                        </Image>-->
+                        </Image>
                         <Label Grid.Row="0" Grid.Column="0"  Text="{Binding AlunoMatricula.Nome}" FontAttributes="Bold" Margin="0,0,0,5"/>
                         <Label Grid.Row="1" Grid.Column="0"  Text="{Binding Plano, Converter={StaticResource EnumDisplay}}" Margin="0,0,0,5"/>
                         <Label Grid.Row="2" Grid.Column="0" Text="{Binding DataInicio}" Margin="0,0,0,5"/>
@@ -47,7 +45,8 @@
                         <Label Grid.Row="4" Grid.Column="0" Text="{Binding AlunoMatricula.Nome}" Margin="0,0,0,5"/>
                         <Label Grid.Row="5" Grid.Column="0" Text="{Binding AlunoMatricula.Cpf}" Margin="0,0,0,5"/>
                         <Label Grid.Row="6" Grid.Column="0" Text="{Binding Objetivo}" Margin="0,0,0,5"/>
-                        <Button Grid.Row="0" Grid.Column="1" Text="" Style="{StaticResource ButtonSmall}" Margin="4,0" Clicked="OnEditButtonClicked">
+                        <Label Grid.Row="7" Grid.Column="0" Text="{Binding RestricoesMedicas}" Margin="0,0,0,5"/>
+                        <Button Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Text="" Style="{StaticResource ButtonSmall}" Margin="4,0" Clicked="OnEditButtonClicked">
                             <Button.ImageSource>
                                 <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe3c9;" />
                             </Button.ImageSource>

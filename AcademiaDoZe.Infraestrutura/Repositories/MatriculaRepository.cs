@@ -24,11 +24,11 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 await using var connection = await GetOpenConnectionAsync();
                 string query = _databaseType == DatabaseType.SqlServer
                 ?
-                $"INSERT INTO {TableName} (aluno_id, plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) " +
+                $"INSERT INTO {TableName} (aluno_id, plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao, laudo_medico) " +
                 $"OUTPUT INSERTED.id_matricula " +
-                $"VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao);"
-                : $"INSERT INTO {TableName} (aluno_id,  plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao) "
-                + "VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao); "
+                $"VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao, @Laudo_medico);"
+                : $"INSERT INTO {TableName} (aluno_id,  plano, data_inicio, data_fim, objetivo, restricao_medica, obs_restricao, laudo_medico) "
+                + "VALUES (@Aluno_id, @Plano, @Data_inicio, @Data_fim, @Objetivo, @Restricao_medica, @Obs_restricao, @Laudo_medico); "
                 + "SELECT LAST_INSERT_ID();";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Aluno_id", entity.AlunoMatricula.Id, DbType.String, _databaseType));
@@ -38,6 +38,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 command.Parameters.Add(DbProvider.CreateParameter("@Objetivo", entity.Objetivo, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Restricao_medica", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Obs_restricao", entity.ObservacoesRestricoes, DbType.String, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Laudo_medico", (object)entity.LaudoMedico.Conteudo ?? DBNull.Value, DbType.Binary, _databaseType));
                 var id = await command.ExecuteScalarAsync();
                 if (id != null && id != DBNull.Value)
                 {
@@ -61,7 +62,8 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 + "data_fim = @Data_fim, "
                 + "objetivo = @Objetivo, "
                 + "restricao_medica = @Restricao_medica, "
-                + "obs_restricao= @Obs_restricao "
+                + "obs_restricao = @Obs_restricao, "
+                + "laudo_medico = @Laudo_medico "
                 + $"WHERE {IdTableName} = @Matricula_id";
                 await using var command = DbProvider.CreateCommand(query, connection);
                 command.Parameters.Add(DbProvider.CreateParameter("@Matricula_id", entity.Id, DbType.String, _databaseType));
@@ -71,6 +73,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 command.Parameters.Add(DbProvider.CreateParameter("@Objetivo", entity.Objetivo, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Restricao_medica", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Obs_restricao", entity.ObservacoesRestricoes, DbType.String, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Laudo_medico", (object)entity.LaudoMedico.Conteudo ?? DBNull.Value, DbType.Binary, _databaseType));
 
                 int rowsAffected = await command.ExecuteNonQueryAsync();
                 if (rowsAffected == 0)

@@ -38,7 +38,7 @@ namespace AcademiaDoZe.Infraestrutura.Repositories
                 command.Parameters.Add(DbProvider.CreateParameter("@Objetivo", entity.Objetivo, DbType.String, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Restricao_medica", (int)entity.RestricoesMedicas, DbType.Int32, _databaseType));
                 command.Parameters.Add(DbProvider.CreateParameter("@Obs_restricao", entity.ObservacoesRestricoes, DbType.String, _databaseType));
-                command.Parameters.Add(DbProvider.CreateParameter("@Laudo_medico", (object)entity.LaudoMedico.Conteudo ?? DBNull.Value, DbType.Binary, _databaseType));
+                command.Parameters.Add(DbProvider.CreateParameter("@Laudo_medico", (object)entity.LaudoMedico?.Conteudo ?? DBNull.Value, DbType.Binary, _databaseType));
                 var id = await command.ExecuteScalarAsync();
                 if (id != null && id != DBNull.Value)
                 {

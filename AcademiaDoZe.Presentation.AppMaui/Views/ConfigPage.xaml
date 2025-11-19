@@ -32,7 +32,7 @@
                                 Color="Red" />
                             </Button.ImageSource>
                         </Button>
-                        <Button Grid.Column="1" Text="Salvar Tema" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                        <Button Grid.Column="1" Text="Salvar" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 
@@ -43,6 +43,26 @@
                         </Button>
                     </Grid>
 
+                </StackLayout>
+            </Border>
+
+            <!-- Cultura -->
+            <Border Style="{StaticResource CardBorder}" Margin="15,10">
+
+                <StackLayout Spacing="15">
+                    <Label Text="Cultura" Style="{StaticResource SubHeadline}"/>
+                    <StackLayout Spacing="5">
+                        <Label Text="Cultura" />
+                        <Picker x:Name="CulturaPicker">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>en-US</x:String>
+                                    <x:String>es-ES</x:String>
+                                    <x:String>pt-BR</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </StackLayout>
                 </StackLayout>
             </Border>
 
@@ -90,7 +110,7 @@
                                 Color="Red" />
                             </Button.ImageSource>
                         </Button>
-                        <Button Grid.Column="1" Text="Salvar BD" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                        <Button Grid.Column="1" Text="Salvar" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 

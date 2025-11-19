@@ -2,6 +2,7 @@ using AcademiaDoZe.Application.Enums;
 using AcademiaDoZe.Presentation.AppMaui.Message;
 using CommunityToolkit.Mvvm.Messaging;
 namespace AcademiaDoZe.Presentation.AppMaui.Views;
+using AcademiaDoZe.Presentation.AppMaui.Resources.Strings;
 public partial class ConfigPage : ContentPage
 {
     // ordem de foco dos controles usada por OnEntryCompleted
@@ -12,6 +13,10 @@ public partial class ConfigPage : ContentPage
         InitializeComponent();
         CarregarTema();
         CarregarBanco();
+        CarregarCultura();
+
+        // Assina o evento SelectedIndexChanged do CulturaPicker, utilizando o tratador OnSalvarCulturaClicked já existente
+        CulturaPicker.SelectedIndexChanged += OnSalvarCulturaClicked;
 
         TemaPicker.SelectedIndexChanged += OnSalvarTemaClicked;
 
@@ -23,6 +28,18 @@ public partial class ConfigPage : ContentPage
     {
         // uso de expressão switch para carregar o índice selecionado
         TemaPicker.SelectedIndex = Preferences.Get("Tema", "system") switch { "light" => 0, "dark" => 1, _ => 2, };
+    }
+    private void CarregarCultura()
+    {
+        // uso de expressão switch para carregar o índice selecionado
+        CulturaPicker.SelectedIndex = Preferences.Get("Cultura", "") switch { "en-US" => 0, "es-ES" => 1, _ => 2, };
+        // se o valor não estiver definido, seleciona o index 2, que é o padrão pt-BR
+    }
+    private async void OnSalvarCulturaClicked(object? sender, EventArgs e)
+    {
+        string selected = CulturaPicker.SelectedIndex switch { 0 => "en-US", 1 => "es-ES", _ => "" };
+        // Disparar mensagem com o idioma selecionado - App.xaml.cs irá capturar esta mensagem e salvar
+        WeakReferenceMessenger.Default.Send(new CulturaPreferencesUpdatedMessage(selected));
     }
     private async void OnSalvarTemaClicked(object sender, EventArgs e)
     {

@@ -4,13 +4,13 @@
      xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views"
-     Title="Academia do Zé">
-    
-        <!--
+     Title="{Binding Path=[strTituloAplicacao], Source={StaticResource LocalizedStrings}}">
+
+    <!--
      <ShellContentTitle="Home" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
      -->
-    
-    <FlyoutItem Title="Dashboard">
+
+    <FlyoutItem Title="{Binding Path=[strDashboard], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
             FontFamily="MaterialIcons" 
@@ -20,7 +20,7 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:DashboardListPage}" Route="dashboard" />
     </FlyoutItem>
-    <FlyoutItem Title="Logradouros">
+    <FlyoutItem Title="{Binding Path=[strLogradouros], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 
@@ -30,7 +30,7 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:LogradouroListPage}" Route="logradouros" />
     </FlyoutItem>
-    <FlyoutItem Title="Colaboradores">
+    <FlyoutItem Title="{Binding Path=[strColaboradores], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 
@@ -40,7 +40,7 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:ColaboradorListPage}" Route="colaboradores" />
     </FlyoutItem>
-    <FlyoutItem Title="Alunos">
+    <FlyoutItem Title="{Binding Path=[strAlunos], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 
@@ -50,7 +50,7 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:AlunoListPage}" Route="alunos" />
     </FlyoutItem>
-    <FlyoutItem Title="Matriculas">
+    <FlyoutItem Title="{Binding Path=[strMatriculas], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 
@@ -60,7 +60,7 @@
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:MatriculaListPage}" Route="matriculas" />
     </FlyoutItem>
-    <FlyoutItem Title="Configurações">
+    <FlyoutItem Title="{Binding Path=[strConfiguracoes], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 
                 FontFamily="MaterialIcons" 

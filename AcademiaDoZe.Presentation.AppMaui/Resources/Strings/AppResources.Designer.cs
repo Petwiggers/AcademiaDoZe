@@ -79,6 +79,15 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a bandeira_brasil.png.
+        /// </summary>
+        internal static string strBandeira {
+            get {
+                return ResourceManager.GetString("strBandeira", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Cancelar.
         /// </summary>
         internal static string strCancelar {
@@ -120,6 +129,24 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         internal static string strCredenciaisBanco {
             get {
                 return ResourceManager.GetString("strCredenciaisBanco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cultura.
+        /// </summary>
+        internal static string strCultura {
+            get {
+                return ResourceManager.GetString("strCultura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dados Pessoais.
+        /// </summary>
+        internal static string strDadosPessoais {
+            get {
+                return ResourceManager.GetString("strDadosPessoais", resourceCulture);
             }
         }
         
@@ -187,11 +214,29 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço.
+        /// </summary>
+        internal static string strEndereco {
+            get {
+                return ResourceManager.GetString("strEndereco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Excluir.
         /// </summary>
         internal static string strExcluirLabel {
             get {
                 return ResourceManager.GetString("strExcluirLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Logradouro ID.
+        /// </summary>
+        internal static string strLogradouroIdLabel {
+            get {
+                return ResourceManager.GetString("strLogradouroIdLabel", resourceCulture);
             }
         }
         
@@ -241,6 +286,24 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Adicionar Primeiro Matrícula.
+        /// </summary>
+        internal static string strNenhumaMatriculaButton {
+            get {
+                return ResourceManager.GetString("strNenhumaMatriculaButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhuma matrícula encontrado.
+        /// </summary>
+        internal static string strNenhumaMatriculaLabel {
+            get {
+                return ResourceManager.GetString("strNenhumaMatriculaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Adicionar Primeiro Colaborador.
         /// </summary>
         internal static string strNenhumColaboradorButton {
@@ -259,11 +322,20 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Adicionar Primeiro Matrícula.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Adicionar Primeiro Logradouro.
         /// </summary>
-        internal static string strNenhumMatriculaButton {
+        internal static string strNenhumLogradouroButton {
             get {
-                return ResourceManager.GetString("strNenhumMatriculaButton", resourceCulture);
+                return ResourceManager.GetString("strNenhumLogradouroButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum logradouro encontrado.
+        /// </summary>
+        internal static string strNenhumLogradouroLabel {
+            get {
+                return ResourceManager.GetString("strNenhumLogradouroLabel", resourceCulture);
             }
         }
         
@@ -286,11 +358,11 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Novo Logradouro.
         /// </summary>
-        internal static string strPalavraEndereco {
+        internal static string strNovoLogradouroTitulo {
             get {
-                return ResourceManager.GetString("strPalavraEndereco", resourceCulture);
+                return ResourceManager.GetString("strNovoLogradouroTitulo", resourceCulture);
             }
         }
         
@@ -309,6 +381,15 @@ namespace AcademiaDoZe.Presentation.AppMaui.Resources.Strings {
         internal static string strSelecionarImagem {
             get {
                 return ResourceManager.GetString("strSelecionarImagem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Selecione as restrições médicas.
+        /// </summary>
+        internal static string strSelecioneRestricoes {
+            get {
+                return ResourceManager.GetString("strSelecioneRestricoes", resourceCulture);
             }
         }
         

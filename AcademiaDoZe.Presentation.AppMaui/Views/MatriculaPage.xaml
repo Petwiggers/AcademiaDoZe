@@ -6,8 +6,7 @@
             xmlns:enums="clr-namespace:AcademiaDoZe.Application.Enums;assembly=AcademiaDoZe.Application"
             xmlns:converters="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Converters"
             xmlns:dto="clr-namespace:AcademiaDoZe.Application.DTOs;assembly=AcademiaDoZe.Application"
-            x:DataType="vm:MatriculaViewModel"
-        Title="{Binding Title}">
+            x:DataType="vm:MatriculaViewModel">
     <ContentPage.Resources>
         <converters:FotoToImageSourceConverter x:Key="FotoToImageSourceConverter" />
         <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyConverter" />
@@ -36,12 +35,12 @@
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
 
                 <StackLayout Spacing="15">
+                    <Label Text="{Binding Path=[strDadosPessoais], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Aluno Selecionado:"/>
                         <Label Text="{Binding Matricula.AlunoMatricula.Nome}" Margin="5,0,0,0" />
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="{Binding Matricula.Id, StringFormat='Matricula ID: {0}'}" Style="{StaticResource SubHeadline}"/>
                         <Picker ItemsSource="{Binding MatriculaPlanos}" SelectedItem="{Binding Matricula.Plano}">
                             <Picker.ItemDisplayBinding>
                                 <Binding Converter="{StaticResource EnumDisplay}" />
@@ -58,7 +57,7 @@
                         <Entry Text="{Binding Matricula.Objetivo}" Placeholder="Digite seu objetivo" />
                     </StackLayout>
                     <VerticalStackLayout Padding="20">
-                        <Label Text="Selecione as restrições médicas:" 
+                        <Label Text="{Binding Path=[strSelecioneRestricoes], Source={StaticResource LocalizedStrings}}" 
                                 Style="{StaticResource SubHeadline}" />
 
                         <!--Lista de CheckBoxes-->
@@ -85,7 +84,7 @@
                     <StackLayout Spacing="5">
                         <Label Text="Foto"/>
                         <Image Source="{Binding Matricula.LaudoMedico, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120"/>
-                        <Button Text="Selecionar Imagem" Command="{Binding SelecionarFotoCommand}" Style="{StaticResource ButtonPrimary}" >
+                        <Button Text="{Binding Path=[strSelecionarImagem], Source={StaticResource LocalizedStrings}}" Command="{Binding SelecionarFotoCommand}" Style="{StaticResource ButtonPrimary}" >
                             <Button.ImageSource>
                                 <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe226;" />
                             </Button.ImageSource>
@@ -96,13 +95,13 @@
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
 
-                <Button Grid.Column="0" Text="Cancelar" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
+                <Button Grid.Column="0" Text="{Binding Path=[strCancelar], Source={StaticResource LocalizedStrings}}" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
                     <Button.ImageSource>
                         <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe5c9;" />
                     </Button.ImageSource>
                 </Button>
 
-                <Button Grid.Column="1" Text="Salvar" Command="{Binding SaveMatriculaCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
+                <Button Grid.Column="1" Text="{Binding Path=[strSalvar], Source={StaticResource LocalizedStrings}}" Command="{Binding SaveMatriculaCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
 
                     <Button.ImageSource>
                         <FontImageSource FontFamily="MaterialIcons" Glyph="&#xf233;" />

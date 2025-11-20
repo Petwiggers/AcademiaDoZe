@@ -3,8 +3,7 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
  x:Class="AcademiaDoZe.Presentation.AppMaui.Views.LogradouroPage"
  xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
- x:DataType="vm:LogradouroViewModel"
- Title="{Binding Title}">
+ x:DataType="vm:LogradouroViewModel">
 
     <ScrollView>
         <StackLayout Spacing="20">
@@ -29,7 +28,7 @@
             <!-- Dados do Logradouro -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="{Binding Logradouro.Id, StringFormat='Logradouro ID: {0}'}" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strEndereco], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <!-- Nome -->
                     <StackLayout Spacing="5">
                         <Label Text="Nome/Rua"/>
@@ -59,7 +58,7 @@
             </Border>
             <!-- Botões de Ação -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
-                <Button Grid.Column="0" Text="Cancelar" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
+                <Button Grid.Column="0" Text="{Binding Path=[strCancelar], Source={StaticResource LocalizedStrings}}" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
                     <Button.ImageSource>
                         <FontImageSource 
                             FontFamily="MaterialIcons" 
@@ -68,7 +67,7 @@
                             Color="Red" />
                     </Button.ImageSource>
                 </Button>
-                <Button Grid.Column="1" Text="Salvar" Command="{Binding SaveLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
+                <Button Grid.Column="1" Text="{Binding Path=[strSalvar], Source={StaticResource LocalizedStrings}}" Command="{Binding SaveLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
                     <Button.ImageSource>
                         <FontImageSource 
                                 FontFamily="MaterialIcons" 

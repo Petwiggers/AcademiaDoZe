@@ -3,13 +3,19 @@
      x:Class="AcademiaDoZe.Presentation.AppMaui.AppShell"
      xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-     xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views"
-     Title="{Binding Path=[strTituloAplicacao], Source={StaticResource LocalizedStrings}}">
+     xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views">
 
     <!--
      <ShellContentTitle="Home" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
      -->
-
+    <Shell.FlyoutHeader>
+        <Grid Padding="12">
+            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                <Image Source="{Binding Source={StaticResource LocalizedStrings}, Path=[strBandeira]}" HeightRequest="28" WidthRequest="42" Aspect="AspectFit"/>
+                <!--<Label Text="{Binding Path=[strTitulo], Source={StaticResource LocalizedStrings}}" VerticalOptions="Center" FontAttributes="Bold"/>-->
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
     <FlyoutItem Title="{Binding Path=[strDashboard], Source={StaticResource LocalizedStrings}}">
         <FlyoutItem.Icon>
             <FontImageSource 

@@ -5,8 +5,7 @@
  xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
  xmlns:enums="clr-namespace:AcademiaDoZe.Application.Enums;assembly=AcademiaDoZe.Application"
  xmlns:converters="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Converters"
- x:DataType="vm:AlunoViewModel"
- Title="{Binding Title}">
+ x:DataType="vm:AlunoViewModel">
     <ContentPage.Resources>
         <converters:FotoToImageSourceConverter x:Key="FotoToImageSourceConverter" />
         <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyConverter" />
@@ -31,7 +30,7 @@
             <!-- Dados Pessoais -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="{Binding Aluno.Id, StringFormat='Aluno ID: {0}'}" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strDadosPessoais], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <StackLayout Spacing="5">
                         <Label Text="Nome"/>
                         <Entry Text="{Binding Aluno.Nome}" Placeholder="Digite o nome..."/>
@@ -55,7 +54,7 @@
                     <StackLayout Spacing="5">
                         <Label Text="Foto"/>
                         <Image Source="{Binding Aluno.Foto, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120"/>
-                        <Button Text="Selecionar Imagem" Command="{Binding SelecionarFotoCommand}" Style="{StaticResource ButtonPrimary}" >
+                        <Button Text="{Binding Path=[strSelecionarImagem], Source={StaticResource LocalizedStrings}}" Command="{Binding SelecionarFotoCommand}" Style="{StaticResource ButtonPrimary}" >
                             <Button.ImageSource>
                                 <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe226;" />
                             </Button.ImageSource>
@@ -66,7 +65,7 @@
             <!-- Endereço -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="Endereço" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strEndereco], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <!-- Busca CEP -->
                     <Grid ColumnDefinitions="*,Auto">
                         <Entry Grid.Column="0" Text="{Binding Aluno.Endereco.Cep}" Placeholder="00000-000" Keyboard="Numeric" Margin="0,0,10,0"/>
@@ -99,12 +98,12 @@
             <!-- Dados de Trabalho -->
             <!-- Botões de Ação -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
-                <Button Grid.Column="0" Text="Cancelar" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
+                <Button Grid.Column="0" Text="{Binding Path=[strCancelar], Source={StaticResource LocalizedStrings}}" Command="{Binding CancelCommand}" Style="{StaticResource ButtonSecondary}" HeightRequest="50">
                     <Button.ImageSource>
                         <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe5c9;" />
                     </Button.ImageSource>
                 </Button>
-                <Button Grid.Column="1" Text="Salvar" Command="{Binding SaveAlunoCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
+                <Button Grid.Column="1" Text="{Binding Path=[strSalvar], Source={StaticResource LocalizedStrings}}" Command="{Binding SaveAlunoCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50">
                     <Button.ImageSource>
                         <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe161;" />
                     </Button.ImageSource>

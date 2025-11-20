@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
  x:Class="AcademiaDoZe.Presentation.AppMaui.Views.ConfigPage"
- Title="Configurações">
+ Title="{Binding Path=[strConfiguracoes], Source={StaticResource LocalizedStrings}}">
     <ScrollView>
         <StackLayout Spacing="20">
             <!-- Tema -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="Tema" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strTema], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
 
                     <StackLayout Spacing="5">
                         <Label Text="Tema" />
@@ -23,7 +23,7 @@
                         </Picker>
                     </StackLayout>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
+                        <Button Grid.Column="0" Text="{Binding Path=[strCancelar], Source={StaticResource LocalizedStrings}}" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 
@@ -32,7 +32,7 @@
                                 Color="Red" />
                             </Button.ImageSource>
                         </Button>
-                        <Button Grid.Column="1" Text="Salvar" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                        <Button Grid.Column="1" Text="{Binding Path=[strSalvar], Source={StaticResource LocalizedStrings}}" Clicked="OnSalvarTemaClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 
@@ -50,9 +50,9 @@
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
 
                 <StackLayout Spacing="15">
-                    <Label Text="Cultura" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strCultura], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <StackLayout Spacing="5">
-                        <Label Text="Cultura" />
+                        <Label Text="{Binding Path=[strCultura], Source={StaticResource LocalizedStrings}}" />
                         <Picker x:Name="CulturaPicker">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -69,7 +69,7 @@
             <!-- Credenciais do Banco -->
             <Border Style="{StaticResource CardBorder}" Margin="15,10">
                 <StackLayout Spacing="15">
-                    <Label Text="Credenciais do Banco" Style="{StaticResource SubHeadline}"/>
+                    <Label Text="{Binding Path=[strCredenciaisBanco], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <Grid ColumnDefinitions="*" ColumnSpacing="10">
                         <StackLayout Spacing="5" Grid.Column="0">
                             <Label Text="Tipo"/>
@@ -101,7 +101,7 @@
                         <Entry x:Name="ComplementoEntry" Placeholder="Digite o complemento..." Completed="OnEntryCompleted"/>
                     </StackLayout>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="15,10">
-                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
+                        <Button Grid.Column="0" Text="{Binding Path=[strCancelar], Source={StaticResource LocalizedStrings}}" Clicked="OnCancelarClicked" Style="{StaticResource ButtonSecondary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 
@@ -110,7 +110,7 @@
                                 Color="Red" />
                             </Button.ImageSource>
                         </Button>
-                        <Button Grid.Column="1" Text="Salvar" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
+                        <Button Grid.Column="1" Text="{Binding Path=[strSalvar], Source={StaticResource LocalizedStrings}}" Clicked="OnSalvarBdClicked" Style="{StaticResource ButtonPrimary}" HeightRequest="45">
                             <Button.ImageSource>
                                 <FontImageSource 
                                 FontFamily="MaterialIcons" 

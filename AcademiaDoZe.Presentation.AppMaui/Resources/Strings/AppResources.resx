@@ -129,11 +129,18 @@
     <value>Selecionar Imagem</value>
     <comment>Chamada para ação de imagem</comment>
   </data>
+  <data name="strSelecioneRestricoes" xml:space="preserve">
+    <value>Selecione as restrições médicas</value>
+    <comment>Chamada para ação de imagem</comment>
+  </data>
   <data name="strTituloAplicacao" xml:space="preserve">
     <value>Academia do Pet</value>
   </data>
   <data name="strCredenciaisBanco" xml:space="preserve">
     <value>Credenciais do Banco</value>
+  </data>
+  <data name="strBandeira" xml:space="preserve">
+    <value>bandeira_brasil.png</value>
   </data>
   <data name="strTema" xml:space="preserve">
     <value>Tema</value>
@@ -156,11 +163,20 @@
   <data name="strDadosTrabalho" xml:space="preserve">
     <value>Dados de Trabalho</value>
   </data>
-  <data name="strPalavraEndereco" xml:space="preserve">
+  <data name="strEndereco" xml:space="preserve">
     <value>Endereço</value>
+  </data>
+  <data name="strDadosPessoais" xml:space="preserve">
+    <value>Dados Pessoais</value>
   </data>
   <data name="strNenhumColaboradorLabel" xml:space="preserve">
     <value>Nenhum colaborador encontrado</value>
+  </data>
+  <data name="strNenhumaMatriculaLabel" xml:space="preserve">
+    <value>Nenhuma matrícula encontrado</value>
+  </data>
+  <data name="strNenhumLogradouroLabel" xml:space="preserve">
+    <value>Nenhum logradouro encontrado</value>
   </data>
   <data name="strNenhumAlunoLabel" xml:space="preserve">
     <value>Nenhum aluno encontrado</value>
@@ -168,10 +184,13 @@
   <data name="strNenhumColaboradorButton" xml:space="preserve">
     <value>Adicionar Primeiro Colaborador</value>
   </data>
+  <data name="strNenhumLogradouroButton" xml:space="preserve">
+    <value>Adicionar Primeiro Logradouro</value>
+  </data>
   <data name="strNenhumAlunoButton" xml:space="preserve">
     <value>Adicionar Primeiro Aluno</value>
   </data>
-  <data name="strNenhumMatriculaButton" xml:space="preserve">
+  <data name="strNenhumaMatriculaButton" xml:space="preserve">
     <value>Adicionar Primeiro Matrícula</value>
   </data>
   <data name="strEditarLabel" xml:space="preserve">
@@ -186,11 +205,17 @@
   <data name="strMatriculaIdLabel" xml:space="preserve">
     <value>Matrícula ID</value>
   </data>
+  <data name="strLogradouroIdLabel" xml:space="preserve">
+    <value>Logradouro ID</value>
+  </data>
   <data name="strNovoAlunoTitulo" xml:space="preserve">
     <value>Novo Aluno</value>
   </data>
   <data name="strNovoColaboradorTitulo" xml:space="preserve">
     <value>Novo Colaborador</value>
+  </data>
+  <data name="strNovoLogradouroTitulo" xml:space="preserve">
+    <value>Novo Logradouro</value>
   </data>
   <data name="strSubtituloAplicacao" xml:space="preserve">
     <value>Sistema de Gerenciamento</value>
@@ -205,6 +230,9 @@
   </data>
   <data name="strCancelar" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="strCultura" xml:space="preserve">
+    <value>Cultura</value>
   </data>
   <data name="strMatriculas" xml:space="preserve">
     <value>Matrículas</value>

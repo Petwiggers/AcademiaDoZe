@@ -5,7 +5,7 @@ x:Class="AcademiaDoZe.Presentation.AppMaui.Views.LogradouroListPage"
 xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
 x:DataType="vm:LogradouroListViewModel"
 xmlns:dto="clr-namespace:AcademiaDoZe.Application.DTOs;assembly=AcademiaDoZe.Application"
-Title="{Binding Title}">
+Title="{Binding Path=[strLogradouros], Source={StaticResource LocalizedStrings}}">
     <Grid RowDefinitions="Auto,*">
         <!-- Search Bar com Picker de filtro -->
         <Border Grid.Row="0" Style="{StaticResource CardBorder}" Margin="15,10">
@@ -38,8 +38,8 @@ Title="{Binding Title}">
                 <CollectionView ItemsSource="{Binding Logradouros}" SelectionMode="None">
                     <CollectionView.EmptyView>
                         <StackLayout VerticalOptions="Center">
-                            <Label Text="Nenhum logradouro encontrado" HorizontalOptions="Center" Style="{StaticResource SubHeadline}"/>
-                            <Button Text="Adicionar Primeiro Logradouro" Command="{Binding AddLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50" Margin="0,20,0,0"/>
+                            <Label Text="{Binding Path=[strNenhumLogradouroLabel], Source={StaticResource LocalizedStrings}}" HorizontalOptions="Center" Style="{StaticResource SubHeadline}"/>
+                            <Button Text="{Binding Path=[strNenhumLogradouroButton], Source={StaticResource LocalizedStrings}}" Command="{Binding AddLogradouroCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50" Margin="0,20,0,0"/>
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
@@ -64,7 +64,7 @@ Title="{Binding Title}">
 
                                         <!-- Botões de Ação -->
 
-                                        <Button Grid.Row="0" Grid.Column="1" Text="Editar" Style="{StaticResource ButtonSmall}" Margin="4,0" Clicked="OnEditButtonClicked">
+                                        <Button Grid.Row="0" Grid.Column="1" Text="{Binding Path=[strEditarLabel], Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonSmall}" Margin="4,0" Clicked="OnEditButtonClicked">
                                             <Button.ImageSource>
                                                 <FontImageSource 
                                                     FontFamily="MaterialIcons" 
@@ -73,7 +73,7 @@ Title="{Binding Title}">
                                                     Color="{AppThemeBinding Light={StaticResource White},Dark={StaticResource MidnightBlue}}" />
                                             </Button.ImageSource>
                                         </Button>
-                                        <Button Grid.Row="0" Grid.Column="2" Text="Excluir" Style="{StaticResource ButtonDanger}" Margin="4,0" Clicked="OnDeleteButtonClicked">
+                                        <Button Grid.Row="0" Grid.Column="2" Text="{Binding Path=[strExcluirLabel], Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonDanger}" Margin="4,0" Clicked="OnDeleteButtonClicked">
                                             <Button.ImageSource>
                                                 <FontImageSource 
                                                     FontFamily="MaterialIcons" 

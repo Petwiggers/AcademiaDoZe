@@ -126,11 +126,17 @@
   <data name="strSelecionarImagem" xml:space="preserve">
     <value>Select Image</value>
   </data>
+  <data name="strSelecioneRestricoes" xml:space="preserve">
+    <value>Select the medical restrictions.</value>
+  </data>
   <data name="strTituloAplicacao" xml:space="preserve">
     <value>Pet Academy</value>
   </data>
   <data name="strCredenciaisBanco" xml:space="preserve">
     <value>Database Credentials</value>
+  </data>
+  <data name="strBandeira" xml:space="preserve">
+    <value>bandeira_estados_unidos.png</value>
   </data>
   <data name="strTema" xml:space="preserve">
     <value>Theme</value>
@@ -153,11 +159,20 @@
   <data name="strDadosTrabalho" xml:space="preserve">
     <value>Work Data</value>
   </data>
-  <data name="strPalavraEndereco" xml:space="preserve">
+  <data name="strEndereco" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="strDadosPessoais" xml:space="preserve">
+    <value>Personal Data</value>
   </data>
   <data name="strNenhumColaboradorLabel" xml:space="preserve">
     <value>No employee found</value>
+  </data>
+  <data name="strNenhumaMatriculaLabel" xml:space="preserve">
+    <value>No registration found.</value>
+  </data>
+  <data name="strNenhumLogradouroLabel" xml:space="preserve">
+    <value>No address found</value>
   </data>
   <data name="strNenhumAlunoLabel" xml:space="preserve">
     <value>No student found</value>
@@ -165,10 +180,13 @@
   <data name="strNenhumColaboradorButton" xml:space="preserve">
     <value>Add First Employee</value>
   </data>
+  <data name="strNenhumLogradouroButton" xml:space="preserve">
+    <value>Add First Address</value>
+  </data>
   <data name="strNenhumAlunoButton" xml:space="preserve">
     <value>Add First Student</value>
   </data>
-  <data name="strNenhumMatriculaButton" xml:space="preserve">
+  <data name="strNenhumaMatriculaButton" xml:space="preserve">
     <value>Add First Enrollment</value>
   </data>
   <data name="strEditarLabel" xml:space="preserve">
@@ -183,11 +201,17 @@
   <data name="strMatriculaIdLabel" xml:space="preserve">
     <value>Enrollment ID</value>
   </data>
+  <data name="strLogradouroIdLabel" xml:space="preserve">
+    <value>Addresses ID</value>
+  </data>
   <data name="strNovoAlunoTitulo" xml:space="preserve">
     <value>New Student</value>
   </data>
   <data name="strNovoColaboradorTitulo" xml:space="preserve">
     <value>New Employee</value>
+  </data>
+  <data name="strNovoLogradouroTitulo" xml:space="preserve">
+    <value>New Address </value>
   </data>
   <data name="strSubtituloAplicacao" xml:space="preserve">
     <value>Management System</value>
@@ -200,6 +224,9 @@
   </data>
   <data name="strCancelar" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="strCultura" xml:space="preserve">
+    <value>Culture</value>
   </data>
   <data name="strMatriculas" xml:space="preserve">
     <value>Enrollments</value>

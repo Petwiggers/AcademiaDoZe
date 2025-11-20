@@ -6,7 +6,7 @@
              x:DataType="vm:MatriculaListViewModel"
              xmlns:dto="clr-namespace:AcademiaDoZe.Application.DTOs;assembly=AcademiaDoZe.Application"
              xmlns:converters="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Converters"
-             Title="{Binding Title}">
+             Title="{Binding Path=[strMatriculas], Source={StaticResource LocalizedStrings}}">
     <ContentPage.Resources>
         <converters:FotoToImageSourceConverter x:Key="FotoToImageSourceConverter" />
         <converters:EnumDisplayConverter x:Key="EnumDisplay" />
@@ -103,8 +103,8 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
                         <StackLayout VerticalOptions="Center">
-                            <Label Text="Nenhuma matricula encontrada" HorizontalOptions="Center" Style="{StaticResource SubHeadline}"/>
-                            <Button Text="Adicionar Primeira Matricula" Command="{Binding AddMatriculaCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50" Margin="0,20,0,0"/>
+                            <Label Text="{Binding Path=[strNenhumaMatriculaLabel], Source={StaticResource LocalizedStrings}}" HorizontalOptions="Center" Style="{StaticResource SubHeadline}"/>
+                            <Button Text="{Binding Path=[strNenhumaMatriculaButton], Source={StaticResource LocalizedStrings}}" Command="{Binding AddMatriculaCommand}" Style="{StaticResource ButtonPrimary}" HeightRequest="50" Margin="0,20,0,0"/>
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <!-- utiliza o DataTemplate criado acima -->

@@ -126,11 +126,17 @@
   <data name="strSelecionarImagem" xml:space="preserve">
     <value>Seleccionar Imagen</value>
   </data>
+  <data name="strSelecioneRestricoes" xml:space="preserve">
+    <value>Seleccione las restricciones médicas.</value>
+  </data>
   <data name="strTituloAplicacao" xml:space="preserve">
     <value>Academia de Pet</value>
   </data>
   <data name="strCredenciaisBanco" xml:space="preserve">
     <value>Credenciales de la Base de Datos</value>
+  </data>
+  <data name="strBandeira" xml:space="preserve">
+    <value>bandeira_espanha.png</value>
   </data>
   <data name="strTema" xml:space="preserve">
     <value>Tema</value>
@@ -153,11 +159,20 @@
   <data name="strDadosTrabalho" xml:space="preserve">
     <value>Datos de Trabajo</value>
   </data>
-  <data name="strPalavraEndereco" xml:space="preserve">
+  <data name="strEndereco" xml:space="preserve">
     <value>Dirección</value>
+  </data>
+  <data name="strDadosPessoais" xml:space="preserve">
+    <value>Datos personales</value>
   </data>
   <data name="strNenhumColaboradorLabel" xml:space="preserve">
     <value>Ningún colaborador encontrado</value>
+  </data>
+  <data name="strNenhumaMatriculaLabel" xml:space="preserve">
+    <value>No se ha encontrado ningún registro.</value>
+  </data>
+  <data name="strNenhumLogradouroLabel" xml:space="preserve">
+    <value>Ningún dirección encontrado</value>
   </data>
   <data name="strNenhumAlunoLabel" xml:space="preserve">
     <value>Ningún estudiante encontrado</value>
@@ -165,10 +180,13 @@
   <data name="strNenhumColaboradorButton" xml:space="preserve">
     <value>Añadir Primer Colaborador</value>
   </data>
+  <data name="strNenhumLogradouroButton" xml:space="preserve">
+    <value>Añadir Primer direccion</value>
+  </data>
   <data name="strNenhumAlunoButton" xml:space="preserve">
     <value>Añadir Primer Estudiante</value>
   </data>
-  <data name="strNenhumMatriculaButton" xml:space="preserve">
+  <data name="strNenhumaMatriculaButton" xml:space="preserve">
     <value>Añadir Primera Matrícula</value>
   </data>
   <data name="strEditarLabel" xml:space="preserve">
@@ -183,11 +201,17 @@
   <data name="strMatriculaIdLabel" xml:space="preserve">
     <value>ID de Matrícula</value>
   </data>
+  <data name="strLogradouroIdLabel" xml:space="preserve">
+    <value>ID de Dirección</value>
+  </data>
   <data name="strNovoAlunoTitulo" xml:space="preserve">
     <value>Nuevo Estudiante</value>
   </data>
   <data name="strNovoColaboradorTitulo" xml:space="preserve">
     <value>Nuevo Colaborador</value>
+  </data>
+  <data name="strNovoLogradouroTitulo" xml:space="preserve">
+    <value>Nuevo Direccion</value>
   </data>
   <data name="strSubtituloAplicacao" xml:space="preserve">
     <value>Sistema de Gestión</value>
@@ -200,6 +224,9 @@
   </data>
   <data name="strCancelar" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="strCultura" xml:space="preserve">
+    <value>Cultura</value>
   </data>
   <data name="strMatriculas" xml:space="preserve">
     <value>Matrículas</value>

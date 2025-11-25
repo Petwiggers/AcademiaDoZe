@@ -25,8 +25,8 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 Endereco = new LogradouroDTO { Cep = string.Empty, Nome = string.Empty, Bairro = string.Empty, Cidade = string.Empty, Estado = string.Empty, Pais = string.Empty }
             },
             Plano = EAppMatriculaPlano.Anual,
-            DataInicio = DateOnly.FromDateTime(DateTime.Now),
-            DataFim = DateOnly.FromDateTime(DateTime.Now.AddMonths(12)),
+            DataInicio = default,
+            DataFim = default,
             Objetivo = string.Empty,
             RestricoesMedicas = null,
             ObservacoesRestricoes = string.Empty,
@@ -54,6 +54,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             _matriculaService = matriculaService;
             _alunoService = alunoService;
             Title = "Detalhes da Matrícula";
+            SelecionarDataInicialCommand = new Command(CalcularDataFinal);
         }
         [RelayCommand]
         private async Task CancelAsync()

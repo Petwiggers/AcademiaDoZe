@@ -50,7 +50,7 @@
                     <StackLayout Spacing="20" Orientation="Horizontal">
                         <Label Text="Data Inicio/Fim"/>
                         <DatePicker Date="{Binding Matricula.DataInicio, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}"/>
-                        <DatePicker Date="{Binding Matricula.DataFim, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}"/>
+                        <DatePicker Date="{Binding Matricula.DataFim, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}" IsEnabled="False"/>
                     </StackLayout>
                     <StackLayout Spacing="5">
                         <Label Text="Objetivo"/>

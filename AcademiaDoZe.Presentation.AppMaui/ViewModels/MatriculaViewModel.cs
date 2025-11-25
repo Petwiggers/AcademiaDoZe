@@ -25,7 +25,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 Endereco = new LogradouroDTO { Cep = string.Empty, Nome = string.Empty, Bairro = string.Empty, Cidade = string.Empty, Estado = string.Empty, Pais = string.Empty }
             },
             Plano = EAppMatriculaPlano.Anual,
-            DataInicio = default,
+            DataInicio = DateOnly.FromDateTime(DateTime.Now),
             DataFim = default,
             Objetivo = string.Empty,
             RestricoesMedicas = null,
@@ -54,7 +54,6 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
             _matriculaService = matriculaService;
             _alunoService = alunoService;
             Title = "Detalhes da Matrícula";
-            SelecionarDataInicialCommand = new Command(CalcularDataFinal);
         }
         [RelayCommand]
         private async Task CancelAsync()
@@ -121,6 +120,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 }
                 Matricula.AlunoMatricula = alunoData;
                 AtualizarRestricoesMatricula();
+                CalcularDataFinal();
                 if (IsEditMode)
                 {
                     await _matriculaService.AtualizarAsync(Matricula);
@@ -162,6 +162,7 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                     Matricula = matriculaData;
                     IsEditMode = true;
                     await Shell.Current.DisplayAlert("Aviso", "Matricula já cadastrado! Dados carregados para edição.", "OK");
+                    InicializaTipoRestricoes();
                 }
                 else
                 {
@@ -259,6 +260,26 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 return false;
             }
             return true;
+        }
+        private void CalcularDataFinal()
+        {
+            switch (Matricula.Plano)
+            {
+                case EAppMatriculaPlano.Mensal:
+                    Matricula.DataFim = Matricula.DataInicio.AddMonths(1);
+                    break;
+                case EAppMatriculaPlano.Trimestral:
+                    Matricula.DataFim = Matricula.DataInicio.AddMonths(3);
+                    break;
+                case EAppMatriculaPlano.Semestral:
+                    Matricula.DataFim = Matricula.DataInicio.AddMonths(6);
+                    break;
+                case EAppMatriculaPlano.Anual:
+                    Matricula.DataFim = Matricula.DataInicio.AddMonths(12);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

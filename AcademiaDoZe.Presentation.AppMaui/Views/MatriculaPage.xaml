@@ -48,7 +48,7 @@
                         </Picker>
                     </StackLayout>
                     <StackLayout Spacing="20" Orientation="Horizontal">
-                        <Label Text="Data Inicio/Fim"/>
+                        <Label Text="Data Inicio"/>
                         <DatePicker Date="{Binding Matricula.DataInicio, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}"/>
                     </StackLayout>
                     <StackLayout Spacing="5">

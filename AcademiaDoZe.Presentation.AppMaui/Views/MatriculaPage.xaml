@@ -37,9 +37,46 @@
                 <StackLayout Spacing="15">
                     <Label Text="{Binding Path=[strDadosPessoais], Source={StaticResource LocalizedStrings}}" Style="{StaticResource SubHeadline}"/>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Aluno Selecionado:"/>
-                        <Label Text="{Binding Matricula.AlunoMatricula.Nome}" Margin="5,0,0,0" />
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
+                                <Label Text="Aluno Selecionado:"/>
+                                <Label Text="{Binding Matricula.AlunoMatricula.Nome}" Margin="5,0,0,0" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
+                                <Label Text="Cpf:"/>
+                                <Label Text="{Binding Matricula.AlunoMatricula.Cpf}" Margin="5,0,0,0" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
+                                <Label Text="Data Nascimento:"/>
+                                <Label Text="{Binding Matricula.AlunoMatricula.DataNascimento}" Margin="5,0,0,0" />
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="11" Source="{Binding Matricula.AlunoMatricula.Foto, Converter={StaticResource FotoToImageSourceConverter}}" Aspect="AspectFill" Margin="50,0,10,0" >
+                                <Image.HeightRequest>
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>110</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                                        <OnIdiom.Desktop>120</OnIdiom.Desktop>
+                                        <OnIdiom.TV>140</OnIdiom.TV>
+                                        <OnIdiom.Default>110</OnIdiom.Default>
+                                    </OnIdiom>
+                                </Image.HeightRequest>
+
+                                <Image.WidthRequest>
+
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>110</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                                        <OnIdiom.Desktop>120</OnIdiom.Desktop>
+                                        <OnIdiom.TV>140</OnIdiom.TV>
+                                        <OnIdiom.Default>110</OnIdiom.Default>
+                                    </OnIdiom>
+                                </Image.WidthRequest>
+                            </Image>
+                        </StackLayout>
                     </StackLayout>
+
                     <StackLayout>
                         <Picker ItemsSource="{Binding MatriculaPlanos}" SelectedItem="{Binding Matricula.Plano}">
                             <Picker.ItemDisplayBinding>

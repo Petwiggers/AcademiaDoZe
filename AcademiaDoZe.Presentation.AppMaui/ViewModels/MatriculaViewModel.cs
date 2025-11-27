@@ -20,7 +20,6 @@ namespace AcademiaDoZe.Presentation.AppMaui.ViewModels
                 Nome = string.Empty,
                 Cpf = string.Empty,
                 Telefone = string.Empty,
-                DataNascimento = default,
                 Numero = string.Empty,
                 Endereco = new LogradouroDTO { Cep = string.Empty, Nome = string.Empty, Bairro = string.Empty, Cidade = string.Empty, Estado = string.Empty, Pais = string.Empty }
             },
